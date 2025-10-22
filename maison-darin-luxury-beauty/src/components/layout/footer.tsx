@@ -74,12 +74,13 @@ export const Footer = ({ currentLang, translations }: FooterProps) => {
     { label: currentLang === 'ar' ? "اتصل بنا" : "Contact", href: "/#contact" },
   ];
 
-  const customerCare = [
-    { label: currentLang === 'ar' ? "سياسة الشحن" : "Shipping Policy", href: "#" },
-    { label: currentLang === 'ar' ? "سياسة الإرجاع" : "Return Policy", href: "#" },
-    { label: currentLang === 'ar' ? "الأسئلة الشائعة" : "FAQ", href: "#" },
-    { label: currentLang === 'ar' ? "خدمة العملاء" : "Customer Service", href: "#" },
-  ];
+  // Customer Care section hidden - no content available yet
+  // const customerCare = [
+  //   { label: currentLang === 'ar' ? "سياسة الشحن" : "Shipping Policy", href: "#" },
+  //   { label: currentLang === 'ar' ? "سياسة الإرجاع" : "Return Policy", href: "#" },
+  //   { label: currentLang === 'ar' ? "الأسئلة الشائعة" : "FAQ", href: "#" },
+  //   { label: currentLang === 'ar' ? "خدمة العملاء" : "Customer Service", href: "#" },
+  // ];
 
   return (
     <footer className="bg-primary text-primary-foreground relative overflow-hidden">
@@ -90,7 +91,7 @@ export const Footer = ({ currentLang, translations }: FooterProps) => {
       </div>
 
       <div className="container mx-auto px-4 py-16 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -155,8 +156,8 @@ export const Footer = ({ currentLang, translations }: FooterProps) => {
             </ul>
           </motion.div>
 
-          {/* Customer Care */}
-          <motion.div
+          {/* Customer Care section hidden - no content available yet */}
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -178,7 +179,7 @@ export const Footer = ({ currentLang, translations }: FooterProps) => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </motion.div> */}
 
           {/* Newsletter & Contact */}
           <motion.div
@@ -251,14 +252,15 @@ export const Footer = ({ currentLang, translations }: FooterProps) => {
               : `© ${new Date().getFullYear()} ${siteSettings?.siteInfo?.siteName?.en || 'Maison Darin'}. All rights reserved.`
             }
           </p>
-          <div className="flex gap-6 text-sm">
+          {/* Policy links hidden - no content available yet */}
+          {/* <div className="flex gap-6 text-sm">
             <a href="#" className="text-primary-foreground/60 hover:text-accent transition-colors">
               {currentLang === 'ar' ? "سياسة الخصوصية" : "Privacy Policy"}
             </a>
             <a href="#" className="text-primary-foreground/60 hover:text-accent transition-colors">
               {currentLang === 'ar' ? "شروط الاستخدام" : "Terms of Service"}
             </a>
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </footer>

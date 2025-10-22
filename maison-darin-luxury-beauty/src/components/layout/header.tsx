@@ -106,8 +106,9 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
                 )}
               </Button>
 
-              {/* Auth Buttons */}
-              {state.isAuthenticated ? (
+              {/* Auth Buttons - Only show logout if authenticated 
+                   Login button is hidden for security - access admin via direct URL only */}
+              {state.isAuthenticated && (
                 <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                   <span className="text-sm text-muted-foreground hidden lg:block">
                     مرحباً، {state.user?.firstName || state.user?.email}
@@ -122,19 +123,6 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
                     <LogOut className="w-5 h-5" />
                   </Button>
                 </div>
-              ) : (
-                <Link to="/auth">
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="hover:bg-muted/50 flex items-center gap-2"
-                  >
-                    <User className="w-4 h-4" />
-                    <span className="hidden lg:block">
-                      {currentLang === 'ar' ? 'تسجيل دخول' : 'Login'}
-                    </span>
-                  </Button>
-                </Link>
               )}
             </div>
 
