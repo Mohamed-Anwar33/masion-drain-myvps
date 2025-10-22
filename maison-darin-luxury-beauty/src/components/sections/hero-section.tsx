@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useHeroSection } from "@/hooks/useHomePage";
 import heroImage from "@/assets/hero-perfume.jpg";
 import collection1 from "@/assets/collection-1.jpg";
@@ -16,6 +17,7 @@ interface HeroSectionProps {
 export function HeroSection({ translations, currentLang }: HeroSectionProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { heroData, loading } = useHeroSection();
+  const navigate = useNavigate();
   const isRTL = currentLang === 'ar';
   const fallbackImages = [heroImage, collection1, collection2, collection3];
   
@@ -36,6 +38,19 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
       if (value.ar) return String(value.ar);
     }
     return String(value);
+  };
+
+  // Click handlers for CTA buttons
+  const handleExploreCollections = () => {
+    navigate('/products');
+  };
+
+  const handleRequestSample = () => {
+    // Scroll to contact section
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   // Auto-change images every 4 seconds
@@ -126,6 +141,7 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
               <Button 
                 size="lg" 
                 className="btn-luxury text-lg px-8 py-3 rounded-full group"
+                onClick={handleExploreCollections}
               >
                 {heroData?.cta?.primary?.text?.[currentLang] || extractString(translations?.hero?.cta?.primary)}
                 <ArrowRight className={`w-5 h-5 transition-transform ${isRTL ? 'mr-2 rotate-180 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'}`} />
@@ -135,6 +151,7 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
                 variant="outline" 
                 size="lg"
                 className="text-lg px-8 py-3 rounded-full border-2 border-beige/30 text-beige hover:bg-beige/10 hover:border-beige/50 transition-all duration-300"
+                onClick={handleRequestSample}
               >
                 {heroData?.cta?.secondary?.text?.[currentLang] || extractString(translations?.hero?.cta?.secondary)}
               </Button>
