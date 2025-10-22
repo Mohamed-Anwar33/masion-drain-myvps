@@ -53,7 +53,7 @@ export function ContactSection({ translations, currentLang }: ContactSectionProp
       className="py-section bg-soft-pink relative emblem-bg"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           
           {/* Section Header */}

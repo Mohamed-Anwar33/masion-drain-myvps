@@ -67,14 +67,14 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center relative overflow-hidden emblem-bg"
+      className="min-h-screen flex items-center relative overflow-hidden emblem-bg pt-20 md:pt-0"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-dark-tea via-teal-green to-dark-tea opacity-90" />
       
-      <div className="container mx-auto px-6 py-32 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 sm:px-6 py-20 sm:py-24 lg:py-32 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
           {/* Left Side - Typography Statement */}
           <motion.div 
@@ -102,7 +102,7 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h1 className="text-5xl lg:text-7xl font-display font-bold leading-tight text-off-white">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display font-bold leading-tight text-off-white">
                 {(heroData?.title?.[currentLang] || extractString(translations?.hero?.title)).split(' ').map((word: string, index: number) => (
                   <motion.span
                     key={index}
@@ -123,7 +123,7 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
 
             {/* Subtitle */}
             <motion.p 
-              className="text-xl text-beige/90 max-w-lg leading-relaxed"
+              className="text-lg sm:text-xl text-beige/90 max-w-lg leading-relaxed"
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}

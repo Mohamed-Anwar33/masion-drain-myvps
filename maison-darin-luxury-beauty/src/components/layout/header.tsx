@@ -1,11 +1,12 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingBag, Search, Menu, User, LogOut } from "lucide-react";
+import { ShoppingBag, Menu, User, LogOut, X } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
+import { useState } from "react";
 import logo from "@/assets/logo.png";
 
 interface HeaderProps {
@@ -17,8 +18,17 @@ interface HeaderProps {
 export function Header({ currentLang, onLanguageChange, translations }: HeaderProps) {
   const { getItemCount, toggleCart } = useCart();
   const { state, logout } = useAuth();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const cartItemCount = getItemCount();
   const isRTL = currentLang === 'ar';
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   // Helper function to extract string value - handles nested objects and text fields
   const extractString = (value: any): string => {
@@ -43,27 +53,29 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       <div className="container mx-auto px-6 py-4">
-        <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-          {/* Logo */}
-          <Link to="/">
-            <motion.div 
-              className="flex items-center"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <img 
-                src={logo} 
-                alt="Logo" 
-                className="h-20 w-32 object-contain drop-shadow-lg"
-                style={{
-                  filter: 'brightness(0) saturate(100%) invert(20%) sepia(51%) saturate(1234%) hue-rotate(139deg) brightness(95%) contrast(95%)'
-                }}
-              />
-            </motion.div>
-          </Link>
+        <div className="flex items-center justify-between">
+          {/* Logo - positioned based on language */}
+          <div className={`${isRTL ? 'order-3' : 'order-1'}`}>
+            <Link to="/">
+              <motion.div 
+                className="flex items-center"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <img 
+                  src={logo} 
+                  alt="Logo" 
+                  className="h-20 w-32 object-contain drop-shadow-lg"
+                  style={{
+                    filter: 'brightness(0) saturate(100%) invert(20%) sepia(51%) saturate(1234%) hue-rotate(139deg) brightness(95%) contrast(95%)'
+                  }}
+                />
+              </motion.div>
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
-          <nav className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-8'}`}>
+          <nav className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8 order-1' : 'space-x-8 order-2'}`}>
             <Link to="/#top" className="text-foreground hover:text-primary transition-colors duration-300 font-medium">
               {extractString(translations?.nav?.home)}
             </Link>
@@ -79,17 +91,13 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
           </nav>
 
           {/* Right Side Actions */}
-          <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+          <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4 order-2' : 'space-x-4 order-3'}`}>
             <LanguageSwitcher 
               currentLang={currentLang} 
               onLanguageChange={onLanguageChange} 
             />
             
             <div className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-              <Button variant="ghost" size="icon" className="hover:bg-muted/50">
-                <Search className="w-5 h-5" />
-              </Button>
-              
               <Button 
                 variant="ghost" 
                 size="icon" 
@@ -126,13 +134,132 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
               )}
             </div>
 
-            {/* Mobile Menu */}
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="w-5 h-5" />
+            {/* Mobile Menu Button */}
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="md:hidden"
+              onClick={toggleMobileMenu}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </Button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            className="fixed inset-0 top-[88px] z-40 md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+              onClick={closeMobileMenu}
+            />
+            
+            {/* Menu Content */}
+            <motion.div
+              className={`absolute top-0 w-full bg-background/95 backdrop-blur-md border-b border-border/20 shadow-lg ${isRTL ? 'right-0' : 'left-0'}`}
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              dir={isRTL ? 'rtl' : 'ltr'}
+            >
+              <nav className="container mx-auto px-6 py-6">
+                <div className="flex flex-col space-y-6">
+                  {/* Navigation Links */}
+                  <div className="flex flex-col space-y-4">
+                    <Link 
+                      to="/#top" 
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors duration-300 py-2"
+                      onClick={closeMobileMenu}
+                    >
+                      {extractString(translations?.nav?.home)}
+                    </Link>
+                    <Link 
+                      to="/products" 
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors duration-300 py-2"
+                      onClick={closeMobileMenu}
+                    >
+                      {extractString(translations?.nav?.collections)}
+                    </Link>
+                    <Link 
+                      to="/#about" 
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors duration-300 py-2"
+                      onClick={closeMobileMenu}
+                    >
+                      {extractString(translations?.nav?.about)}
+                    </Link>
+                    <Link 
+                      to="/#contact" 
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors duration-300 py-2"
+                      onClick={closeMobileMenu}
+                    >
+                      {extractString(translations?.nav?.contact)}
+                    </Link>
+                  </div>
+
+                  {/* Mobile Actions */}
+                  <div className={`flex items-center justify-between pt-4 border-t border-border/20 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+                      <Button 
+                        variant="outline" 
+                        size="icon" 
+                        className="hover:bg-muted/50 relative"
+                        onClick={() => {
+                          toggleCart();
+                          closeMobileMenu();
+                        }}
+                      >
+                        <ShoppingBag className="w-5 h-5" />
+                        {cartItemCount > 0 && (
+                          <Badge 
+                            className={`absolute -top-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-primary text-primary-foreground ${isRTL ? '-left-2' : '-right-2'}`}
+                          >
+                            {cartItemCount}
+                          </Badge>
+                        )}
+                      </Button>
+                    </div>
+
+                    {/* Auth Section for Mobile */}
+                    {state.isAuthenticated && (
+                      <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+                        <span className="text-sm text-muted-foreground">
+                          مرحباً، {state.user?.firstName || state.user?.email}
+                        </span>
+                        <Button 
+                          variant="outline" 
+                          size="icon" 
+                          className="hover:bg-muted/50"
+                          onClick={() => {
+                            logout();
+                            closeMobileMenu();
+                          }}
+                          title="تسجيل خروج"
+                        >
+                          <LogOut className="w-5 h-5" />
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </nav>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

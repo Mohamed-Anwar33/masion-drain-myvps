@@ -173,6 +173,50 @@
   }
 }
 
+/* Prevent horizontal scroll on admin pages */
+.admin-layout {
+  overflow-x: hidden;
+}
+
+/* Responsive table containers */
+.admin-table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-table-container table {
+  min-width: 800px;
+  width: 100%;
+}
+
+/* Mobile table improvements */
+@media (max-width: 640px) {
+  .admin-table-container table {
+    min-width: 600px;
+    font-size: 0.875rem;
+  }
+  
+  .admin-table-container th,
+  .admin-table-container td {
+    padding: 0.5rem 0.25rem;
+    white-space: nowrap;
+  }
+}
+
+/* Prevent content overflow */
+.admin-content-wrapper {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Responsive cards */
+@media (max-width: 640px) {
+  .admin-card {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+}
+
 /* RTL Text Direction Utilities */
 .rtl-content {
   direction: rtl;

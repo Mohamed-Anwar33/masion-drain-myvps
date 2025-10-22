@@ -99,7 +99,7 @@ export function AdminLayout({
   };
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-dark-tea via-teal-green to-light-brown ${isRTL ? 'rtl' : 'ltr'} flex`} dir={isRTL ? 'rtl' : 'ltr'}>
+    <div className={`min-h-screen bg-gradient-to-br from-dark-tea via-teal-green to-light-brown ${isRTL ? 'rtl' : 'ltr'} flex overflow-x-hidden`} dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Sidebar */}
       <AnimatePresence>
         {sidebarOpen && (
@@ -118,7 +118,7 @@ export function AdminLayout({
           initial={{ x: isRTL ? 320 : -320 }}
           animate={{ x: 0 }}
           exit={{ x: isRTL ? 320 : -320 }}
-          className={`w-80 h-screen bg-off-white/95 backdrop-blur-xl border-r border-gold/20 shadow-luxury flex-shrink-0`}
+          className={`w-80 h-screen bg-off-white/95 backdrop-blur-xl border-r border-gold/20 shadow-luxury flex-shrink-0 fixed lg:relative z-50 lg:z-auto`}
       >
         <div className="p-6 border-b border-gold/20">
           <div className="flex items-center justify-between">
@@ -179,7 +179,7 @@ export function AdminLayout({
       )}
 
       {/* Main Content */}
-      <div className={`flex-1 min-h-screen transition-all duration-300`}>
+      <div className={`flex-1 min-h-screen transition-all duration-300 ${sidebarOpen ? 'lg:ml-80' : ''} w-full lg:w-auto`}>
         {/* Header */}
         <header className="bg-off-white/95 backdrop-blur-xl border-b border-gold/20 shadow-luxury">
           <div className="flex items-center justify-between p-4 lg:p-6">
@@ -253,7 +253,7 @@ export function AdminLayout({
         </header>
 
         {/* Page Content */}
-        <main className="p-4 lg:p-6">
+        <main className="p-4 lg:p-6 max-w-full overflow-x-hidden">
           <motion.div
             key={activeTab}
             initial={{ opacity: 0, y: 20 }}

@@ -23,7 +23,7 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
   if (loading) {
     return (
       <section className="py-section bg-soft-neutral relative emblem-bg">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-center py-12">
             <LoadingSpinner size="lg" />
           </div>
@@ -36,7 +36,7 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
   if (error || !collectionsData) {
     return (
       <section className="py-section bg-soft-neutral relative emblem-bg">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center py-12">
             <p className="text-dark-tea">
               {error || 'Failed to load featured collections'}
@@ -91,7 +91,7 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
       className="py-section bg-soft-neutral relative emblem-bg"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <motion.div 
           className="text-center mb-16"
