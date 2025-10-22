@@ -52,9 +52,9 @@ app.use(cors(corsOptions));
 // Rate limiting for API routes
 app.use('/api/', apiLimiter);
 
-// Body parsing middleware - Increased limits for image uploads
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb', parameterLimit: 10000 }));
+// Body parsing middleware - Increased limits for image uploads and large operations
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ extended: true, limit: '100mb', parameterLimit: 50000 }));
 
 // Additional performance middleware
 app.use(PerformanceOptimization.getDatabaseOptimizationMiddleware());
@@ -124,6 +124,7 @@ app.use('/api/customers', customerRoutes);
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/samples', require('./routes/samples'));
 app.use('/api/media', mediaRoutes);
+app.use('/api/upload', require('./routes/upload'));
 app.use('/api/homepage', require('./routes/homePageRoutes'));
 app.use('/api/site-settings', siteSettingsRoutes);
 app.use('/api/content', contentRoutes);

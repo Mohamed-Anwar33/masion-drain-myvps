@@ -17,7 +17,7 @@ const storage = multer.memoryStorage();
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB limit
+    fileSize: 50 * 1024 * 1024, // 50MB limit
   },
   fileFilter: (req, file, cb) => {
     // Check if file is an image
@@ -32,12 +32,30 @@ const upload = multer({
 // Upload image endpoint
 router.post('/image', upload.single('image'), async (req, res) => {
   try {
+    console.log('📤 Upload request received:', {
+      hasFile: !!req.file,
+      fileSize: req.file?.size,
+      mimeType: req.file?.mimetype
+    });
+
     if (!req.file) {
-      return res.status(400).json({ error: 'No image file provided' });
+      return res.status(400).json({ 
+        success: false,
+        error: 'No image file provided' 
+      });
+    }
+
+    // Check file size
+    if (req.file.size > 50 * 1024 * 1024) {
+      return res.status(413).json({ 
+        success: false,
+        error: 'File too large. Maximum size is 50MB' 
+      });
     }
 
     // Try Cloudinary upload first
     try {
+      console.log('☁️ Attempting Cloudinary upload...');
       const result = await new Promise((resolve, reject) => {
         cloudinary.uploader.upload_stream(
           {
@@ -50,8 +68,13 @@ router.post('/image', upload.single('image'), async (req, res) => {
             tags: ['maison-darin', 'hero', 'admin-upload']
           },
           (error, result) => {
-            if (error) reject(error);
-            else resolve(result);
+            if (error) {
+              console.error('❌ Cloudinary error:', error);
+              reject(error);
+            } else {
+              console.log('✅ Cloudinary upload successful:', result.public_id);
+              resolve(result);
+            }
           }
         ).end(req.file.buffer);
       });
@@ -175,6 +198,44 @@ router.post('/images', upload.array('images', 10), async (req, res) => {
       details: error.message 
     });
   }
+});
+
+// Error handler for multer
+router.use((error, req, res, next) => {
+  console.error('📤 Upload error:', error);
+  
+  if (error instanceof multer.MulterError) {
+    if (error.code === 'LIMIT_FILE_SIZE') {
+      return res.status(413).json({
+        success: false,
+        error: 'File too large. Maximum size is 50MB'
+      });
+    }
+    if (error.code === 'LIMIT_FILE_COUNT') {
+      return res.status(400).json({
+        success: false,
+        error: 'Too many files'
+      });
+    }
+    if (error.code === 'LIMIT_UNEXPECTED_FILE') {
+      return res.status(400).json({
+        success: false,
+        error: 'Unexpected file field'
+      });
+    }
+  }
+  
+  if (error.message === 'Only image files are allowed!') {
+    return res.status(400).json({
+      success: false,
+      error: 'Only image files are allowed'
+    });
+  }
+  
+  return res.status(500).json({
+    success: false,
+    error: 'Upload failed: ' + error.message
+  });
 });
 
 module.exports = router;
