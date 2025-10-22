@@ -86,6 +86,17 @@ export const translations = {
       address: "Luxury Boutique, Fashion District",
       email: "hello@maisondarin.com",
       phone: "+1 (555) 123-4567"
+    },
+    notFound: {
+      title: "Oops! Page Not Found",
+      description: "The page you're looking for seems to have been moved, deleted, or the link is incorrect. Don't worry, you can find what you're looking for through the links below.",
+      backHome: "Back to Home",
+      browseProducts: "Browse Products",
+      quickLinks: "Quick Links:",
+      products: "Products",
+      about: "About Us",
+      contactUs: "Contact Us",
+      cart: "Shopping Cart"
     }
   },
   ar: {
@@ -175,6 +186,17 @@ export const translations = {
       address: "بوتيك فاخر، منطقة الأزياء",
       email: "hello@maisondarin.com",
       phone: "+1 (555) 123-4567"
+    },
+    notFound: {
+      title: "عذراً، الصفحة غير موجودة",
+      description: "يبدو أن الصفحة التي تبحث عنها قد تم نقلها أو حذفها أو أن الرابط غير صحيح. لا تقلق، يمكنك العثور على ما تبحث عنه من خلال الروابط أدناه.",
+      backHome: "العودة للرئيسية",
+      browseProducts: "تصفح المنتجات",
+      quickLinks: "روابط مفيدة:",
+      products: "المنتجات",
+      about: "من نحن",
+      contactUs: "تواصل معنا",
+      cart: "سلة التسوق"
     }
   }
 };

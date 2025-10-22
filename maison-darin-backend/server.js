@@ -166,7 +166,25 @@ app.get('/api', (req, res) => {
   });
 });
 
-// 404 handler - convert to NotFoundError
+// Serve static files from the React app build directory (Production only)
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path');
+  
+  // Serve static files from the frontend build directory
+  app.use(express.static(path.join(__dirname, '../maison-darin-luxury-beauty/dist')));
+  
+  // Catch all handler: send back React's index.html file for any non-API routes
+  app.get('*', (req, res, next) => {
+    // Skip API routes
+    if (req.path.startsWith('/api/') || req.path.startsWith('/uploads/') || req.path.startsWith('/health')) {
+      return next();
+    }
+    
+    res.sendFile(path.join(__dirname, '../maison-darin-luxury-beauty/dist/index.html'));
+  });
+}
+
+// 404 handler - convert to NotFoundError (only for API routes now)
 app.use('*', (req, res, next) => {
   next(new NotFoundError(`Route ${req.originalUrl} not found`));
 });
