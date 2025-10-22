@@ -1,0 +1,10 @@
+{
+  "timestamp": "2025-09-10T05:14:14.765Z",
+  "environment": "development",
+  "testFile": "tests/integration/frontend-integration.test.js",
+  "results": {
+    "status": "failed",
+    "error": "Health check failed",
+    "timestamp": "2025-09-10T05:14:14.761Z"
+  }
+}

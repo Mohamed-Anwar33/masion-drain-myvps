@@ -1,0 +1,100 @@
+{
+  "uploadDate": "2025-09-10T04:15:00.000Z",
+  "totalUploaded": 5,
+  "successfulUploads": 5,
+  "failedUploads": 0,
+  "mapping": {
+    "hero-perfume.jpg": {
+      "cloudinaryId": "maison-darin/products/hero-perfume",
+      "url": "https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+      "optimizedUrls": {
+        "small": "https://res.cloudinary.com/maison-darin/image/upload/w_400,h_400,c_fill,q_auto,f_webp/v1725955200/maison-darin/products/hero-perfume.webp",
+        "medium": "https://res.cloudinary.com/maison-darin/image/upload/w_800,h_800,c_fill,q_auto,f_webp/v1725955200/maison-darin/products/hero-perfume.webp",
+        "large": "https://res.cloudinary.com/maison-darin/image/upload/w_1200,h_1200,c_limit,q_auto,f_webp/v1725955200/maison-darin/products/hero-perfume.webp"
+      }
+    },
+    "collection-1.jpg": {
+      "cloudinaryId": "maison-darin/products/collection-1",
+      "url": "https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+      "optimizedUrls": {
+        "small": "https://res.cloudinary.com/maison-darin/image/upload/w_400,h_400,c_fill,q_auto,f_webp/v1725955200/maison-darin/products/collection-1.webp",
+        "medium": "https://res.cloudinary.com/maison-darin/image/upload/w_800,h_800,c_fill,q_auto,f_webp/v1725955200/maison-darin/products/collection-1.webp",
+        "large": "https://res.cloudinary.com/maison-darin/image/upload/w_1200,h_1200,c_limit,q_auto,f_webp/v1725955200/maison-darin/products/collection-1.webp"
+      }
+    },
+    "collection-2.jpg": {
+      "cloudinaryId": "maison-darin/products/collection-2",
+      "url": "https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+      "optimizedUrls": {
+        "small": "https://res.cloudinary.com/maison-darin/image/upload/w_400,h_400,c_fill,q_auto,f_webp/v1725955200/maison-darin/products/collection-2.webp",
+        "medium": "https://res.cloudinary.com/maison-darin/image/upload/w_800,h_800,c_fill,q_auto,f_webp/v1725955200/maison-darin/products/collection-2.webp",
+        "large": "https://res.cloudinary.com/maison-darin/image/upload/w_1200,h_1200,c_limit,q_auto,f_webp/v1725955200/maison-darin/products/collection-2.webp"
+      }
+    },
+    "collection-3.jpg": {
+      "cloudinaryId": "maison-darin/products/collection-3",
+      "url": "https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg",
+      "optimizedUrls": {
+        "small": "https://res.cloudinary.com/maison-darin/image/upload/w_400,h_400,c_fill,q_auto,f_webp/v1725955200/maison-darin/products/collection-3.webp",
+        "medium": "https://res.cloudinary.com/maison-darin/image/upload/w_800,h_800,c_fill,q_auto,f_webp/v1725955200/maison-darin/products/collection-3.webp",
+        "large": "https://res.cloudinary.com/maison-darin/image/upload/w_1200,h_1200,c_limit,q_auto,f_webp/v1725955200/maison-darin/products/collection-3.webp"
+      }
+    },
+    "logo.png": {
+      "cloudinaryId": "maison-darin/brand/logo",
+      "url": "https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/brand/logo.png",
+      "optimizedUrls": {
+        "small": "https://res.cloudinary.com/maison-darin/image/upload/w_200,h_200,c_fit,q_auto,f_webp/v1725955200/maison-darin/brand/logo.webp",
+        "medium": "https://res.cloudinary.com/maison-darin/image/upload/w_400,h_400,c_fit,q_auto,f_webp/v1725955200/maison-darin/brand/logo.webp",
+        "large": "https://res.cloudinary.com/maison-darin/image/upload/w_800,h_800,c_fit,q_auto,f_webp/v1725955200/maison-darin/brand/logo.webp"
+      }
+    }
+  },
+  "uploadResults": [
+    {
+      "originalFilename": "hero-perfume.jpg",
+      "publicId": "maison-darin/products/hero-perfume",
+      "secureUrl": "https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+      "width": 1200,
+      "height": 1200,
+      "format": "jpg",
+      "bytes": 85432
+    },
+    {
+      "originalFilename": "collection-1.jpg",
+      "publicId": "maison-darin/products/collection-1",
+      "secureUrl": "https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+      "width": 1200,
+      "height": 1200,
+      "format": "jpg",
+      "bytes": 92156
+    },
+    {
+      "originalFilename": "collection-2.jpg",
+      "publicId": "maison-darin/products/collection-2",
+      "secureUrl": "https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+      "width": 1200,
+      "height": 1200,
+      "format": "jpg",
+      "bytes": 88743
+    },
+    {
+      "originalFilename": "collection-3.jpg",
+      "publicId": "maison-darin/products/collection-3",
+      "secureUrl": "https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg",
+      "width": 1200,
+      "height": 1200,
+      "format": "jpg",
+      "bytes": 79654
+    },
+    {
+      "originalFilename": "logo.png",
+      "publicId": "maison-darin/brand/logo",
+      "secureUrl": "https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/brand/logo.png",
+      "width": 400,
+      "height": 400,
+      "format": "png",
+      "bytes": 15234
+    }
+  ]
+}

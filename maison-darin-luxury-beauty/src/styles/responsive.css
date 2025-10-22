@@ -1,0 +1,506 @@
+/* Enhanced Responsive Design for Admin Dashboard */
+
+/* Base responsive utilities */
+.responsive-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+/* Responsive grid system */
+.responsive-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.responsive-grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.responsive-grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.responsive-grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+/* Mobile-first breakpoints */
+/* Extra small devices (phones, 576px and down) */
+@media (max-width: 575.98px) {
+  .responsive-container {
+    padding: 0 0.5rem;
+  }
+  
+  .responsive-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .responsive-grid-2,
+  .responsive-grid-3,
+  .responsive-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Hide non-essential elements on mobile */
+  .hide-mobile {
+    display: none !important;
+  }
+  
+  /* Stack elements vertically on mobile */
+  .stack-mobile {
+    flex-direction: column !important;
+  }
+  
+  /* Full width on mobile */
+  .full-width-mobile {
+    width: 100% !important;
+  }
+  
+  /* Smaller text on mobile */
+  .text-sm-mobile {
+    font-size: 0.875rem !important;
+  }
+  
+  /* Compact padding on mobile */
+  .compact-mobile {
+    padding: 0.5rem !important;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .responsive-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .responsive-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hide-sm {
+    display: none !important;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .responsive-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .responsive-grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .hide-md {
+    display: none !important;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .hide-lg {
+    display: none !important;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .hide-xl {
+    display: none !important;
+  }
+}
+
+/* Touch-friendly interface improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem;
+  }
+  
+  /* Remove hover effects on touch devices */
+  .no-touch-hover:hover {
+    background-color: inherit !important;
+    color: inherit !important;
+  }
+  
+  /* Larger form inputs */
+  input, select, textarea, button {
+    min-height: 44px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  /* Larger checkboxes and radio buttons */
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* RTL (Arabic) responsive adjustments */
+[dir="rtl"] .responsive-sidebar {
+  right: 0;
+  left: auto;
+}
+
+[dir="rtl"] .responsive-content {
+  margin-right: 250px;
+  margin-left: 0;
+}
+
+@media (max-width: 768px) {
+  [dir="rtl"] .responsive-content {
+    margin-right: 0;
+  }
+}
+
+/* Sidebar responsive behavior */
+.responsive-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.responsive-sidebar.collapsed {
+  transform: translateX(-100%);
+}
+
+[dir="rtl"] .responsive-sidebar {
+  right: 0;
+  left: auto;
+  border-right: none;
+  border-left: 1px solid #e5e7eb;
+}
+
+[dir="rtl"] .responsive-sidebar.collapsed {
+  transform: translateX(100%);
+}
+
+.responsive-content {
+  margin-left: 250px;
+  transition: margin-left 0.3s ease-in-out;
+  min-height: 100vh;
+}
+
+.responsive-content.expanded {
+  margin-left: 0;
+}
+
+[dir="rtl"] .responsive-content {
+  margin-right: 250px;
+  margin-left: 0;
+}
+
+[dir="rtl"] .responsive-content.expanded {
+  margin-right: 0;
+}
+
+/* Mobile sidebar overlay */
+@media (max-width: 768px) {
+  .responsive-sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .responsive-sidebar.open {
+    transform: translateX(0);
+  }
+  
+  [dir="rtl"] .responsive-sidebar {
+    transform: translateX(100%);
+  }
+  
+  [dir="rtl"] .responsive-sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .responsive-content {
+    margin-left: 0;
+  }
+  
+  [dir="rtl"] .responsive-content {
+    margin-right: 0;
+  }
+  
+  /* Mobile overlay */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Responsive tables */
+.responsive-table {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.responsive-table table {
+  min-width: 600px;
+}
+
+@media (max-width: 768px) {
+  .responsive-table-mobile {
+    display: block;
+  }
+  
+  .responsive-table-mobile thead {
+    display: none;
+  }
+  
+  .responsive-table-mobile tbody,
+  .responsive-table-mobile tr,
+  .responsive-table-mobile td {
+    display: block;
+  }
+  
+  .responsive-table-mobile tr {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  
+  .responsive-table-mobile td {
+    border: none;
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 50%;
+  }
+  
+  .responsive-table-mobile td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #374151;
+  }
+  
+  [dir="rtl"] .responsive-table-mobile td {
+    padding-right: 50%;
+    padding-left: 0;
+  }
+  
+  [dir="rtl"] .responsive-table-mobile td:before {
+    right: 0;
+    left: auto;
+    padding-left: 10px;
+    padding-right: 0;
+  }
+}
+
+/* Responsive forms */
+.responsive-form {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .responsive-form-2col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .responsive-form-3col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.responsive-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .responsive-form-group-horizontal {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .responsive-form-group-horizontal label {
+    min-width: 120px;
+    margin-bottom: 0;
+  }
+}
+
+/* Responsive buttons */
+.responsive-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 576px) {
+  .responsive-button-group {
+    flex-direction: column;
+  }
+  
+  .responsive-button-group button {
+    width: 100%;
+  }
+}
+
+/* Responsive cards */
+.responsive-card {
+  background: white;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 576px) {
+  .responsive-card {
+    padding: 1rem;
+    border-radius: 0.25rem;
+  }
+}
+
+/* Responsive navigation */
+.responsive-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.responsive-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .responsive-nav-menu {
+    display: none;
+  }
+  
+  .responsive-nav-menu.open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Responsive utilities */
+.responsive-text-center {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .responsive-text-center-mobile {
+    text-align: center;
+  }
+}
+
+.responsive-flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .responsive-flex-mobile-column {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .responsive-sidebar {
+    display: none !important;
+  }
+  
+  .responsive-content {
+    margin: 0 !important;
+  }
+  
+  .responsive-card {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .responsive-card {
+    border: 2px solid #000;
+  }
+  
+  button, input, select, textarea {
+    border: 2px solid #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .responsive-sidebar,
+  .responsive-content,
+  .sidebar-overlay {
+    transition: none !important;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .responsive-card {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+  }
+  
+  .responsive-sidebar {
+    background: #111827;
+    border-color: #374151;
+  }
+  
+  .responsive-nav {
+    background: #111827;
+    border-color: #374151;
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "multilingualValidationReport": {
+    "products": {
+      "totalProducts": 11,
+      "completeTranslations": 11,
+      "englishComplete": 11,
+      "arabicComplete": 11,
+      "nameTranslations": 11,
+      "descriptionTranslations": 11,
+      "longDescriptionTranslations": 11,
+      "fragranceNotesTranslations": 11,
+      "concentrationTranslations": 11,
+      "seoTranslations": 11,
+      "imageAltTranslations": 11,
+      "completenessRates": {
+        "overall": "100.0",
+        "english": "100.0",
+        "arabic": "100.0",
+        "names": "100.0",
+        "descriptions": "100.0",
+        "longDescriptions": "100.0",
+        "fragranceNotes": "100.0",
+        "concentration": "100.0",
+        "seo": "100.0",
+        "imageAlt": "100.0"
+      }
+    },
+    "content": {
+      "totalSections": 6,
+      "completeTranslations": 6,
+      "englishComplete": 6,
+      "arabicComplete": 6,
+      "sectionDetails": {
+        "nav": {
+          "hasEnglish": true,
+          "hasArabic": true,
+          "complete": true
+        },
+        "hero": {
+          "hasEnglish": true,
+          "hasArabic": true,
+          "complete": true
+        },
+        "about": {
+          "hasEnglish": true,
+          "hasArabic": true,
+          "complete": true
+        },
+        "collections": {
+          "hasEnglish": true,
+          "hasArabic": true,
+          "complete": true
+        },
+        "contact": {
+          "hasEnglish": true,
+          "hasArabic": true,
+          "complete": true
+        },
+        "footer": {
+          "hasEnglish": true,
+          "hasArabic": true,
+          "complete": true
+        }
+      },
+      "completenessRates": {
+        "overall": "100.0",
+        "english": "100.0",
+        "arabic": "100.0"
+      }
+    },
+    "textValidation": {
+      "totalTexts": 78,
+      "validArabicTexts": 39,
+      "validEnglishTexts": 39,
+      "mixedLanguageTexts": 0,
+      "encodingIssues": 0,
+      "validationRates": {
+        "arabic": "100.0",
+        "english": "100.0",
+        "mixedLanguage": "0.0"
+      }
+    },
+    "consistency": {
+      "totalComparisons": 33,
+      "consistentLengths": 22,
+      "consistentStructures": 11,
+      "lengthDiscrepancies": [],
+      "consistencyRates": {
+        "length": "66.7",
+        "structure": "33.3"
+      }
+    },
+    "quality": {
+      "totalTranslations": 22,
+      "qualityIssues": 0,
+      "suspiciousTranslations": [],
+      "qualityScore": 100
+    },
+    "overall": {
+      "validationDate": "2025-09-10T05:07:30.580Z",
+      "overallScore": 97,
+      "status": "EXCELLENT",
+      "totalErrors": 0,
+      "totalWarnings": 0,
+      "errors": [],
+      "warnings": [],
+      "recommendations": [
+        "Improve content consistency between language versions"
+      ]
+    },
+    "summary": {
+      "translationCompleteness": "EXCELLENT",
+      "textEncoding": "VALID",
+      "contentConsistency": "INCONSISTENT",
+      "translationQuality": "HIGH"
+    }
+  }
+}

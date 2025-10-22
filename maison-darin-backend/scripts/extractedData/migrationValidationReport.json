@@ -1,0 +1,86 @@
+{
+  "migrationValidationReport": {
+    "database": {
+      "totalProducts": 11,
+      "expectedProducts": 11,
+      "migrationComplete": true,
+      "featuredProducts": 6,
+      "inStockProducts": 10,
+      "outOfStockProducts": 1,
+      "categories": [
+        "aquatic",
+        "citrus",
+        "floral",
+        "fresh",
+        "gourmand",
+        "oriental",
+        "spicy",
+        "woody"
+      ]
+    },
+    "images": {
+      "totalImages": 33,
+      "cloudinaryImages": 33,
+      "imagesWithOptimization": 0,
+      "imagesWithAltText": 33,
+      "cloudinaryIntegrationRate": "100.0",
+      "optimizationRate": "0.0",
+      "altTextCompleteness": "100.0"
+    },
+    "content": {
+      "totalProducts": 11,
+      "productsWithLongDescription": 11,
+      "productsWithFragranceNotes": 11,
+      "productsWithConcentration": 11,
+      "longDescriptionCompleteness": "100.0",
+      "fragranceNotesCompleteness": "100.0",
+      "concentrationCompleteness": "100.0"
+    },
+    "multilingual": {
+      "totalProducts": 11,
+      "englishComplete": 11,
+      "arabicComplete": 11,
+      "bothLanguagesComplete": 11,
+      "englishCompleteness": "100.0",
+      "arabicCompleteness": "100.0",
+      "bilingualCompleteness": "100.0"
+    },
+    "seo": {
+      "totalProducts": 11,
+      "productsWithSeo": 11,
+      "productsWithMetaTitles": 11,
+      "productsWithMetaDescriptions": 11,
+      "seoCompleteness": "100.0",
+      "metaTitleCompleteness": "100.0",
+      "metaDescriptionCompleteness": "100.0"
+    },
+    "overall": {
+      "validationDate": "2025-09-10T04:35:22.143Z",
+      "overallScore": 100,
+      "status": "EXCELLENT",
+      "totalErrors": 11,
+      "totalWarnings": 0,
+      "errors": [
+        "Product Floral Symphony not found in database",
+        "Product Oriental Mystique not found in database",
+        "Product Fresh Breeze not found in database",
+        "Product Royal Garden not found in database",
+        "Product Midnight Rose not found in database",
+        "Product Golden Sands not found in database",
+        "Product Citrus Burst not found in database",
+        "Product Spice Market not found in database",
+        "Product Ocean Breeze not found in database",
+        "Product Vanilla Dreams not found in database",
+        "Product Forest Walk not found in database"
+      ],
+      "warnings": []
+    },
+    "summary": {
+      "migrationStatus": "PARTIAL_SUCCESS",
+      "dataIntegrity": "COMPLETE",
+      "imageIntegration": "EXCELLENT",
+      "multilingualSupport": "COMPLETE",
+      "seoOptimization": "COMPLETE"
+    }
+  }
+}

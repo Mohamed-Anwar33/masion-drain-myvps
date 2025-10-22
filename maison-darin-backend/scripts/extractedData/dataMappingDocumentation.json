@@ -1,0 +1,214 @@
+{
+  "generatedAt": "2025-09-10T04:04:44.391Z",
+  "overview": {
+    "purpose": "Data structure mapping for Maison Darin website migration",
+    "sourceFormat": "Frontend TypeScript data files",
+    "targetFormat": "MongoDB documents via Mongoose schemas",
+    "totalMappings": {
+      "products": 14,
+      "content": 5,
+      "images": 4
+    }
+  },
+  "mappingRules": {
+    "products": {
+      "directMappings": {
+        "id": "frontendId",
+        "name.en": "name.en",
+        "name.ar": "name.ar",
+        "description.en": "description.en",
+        "description.ar": "description.ar",
+        "longDescription.en": "longDescription.en",
+        "longDescription.ar": "longDescription.ar",
+        "price": "price",
+        "size": "size",
+        "category": "category",
+        "featured": "featured",
+        "inStock": "inStock",
+        "concentration.en": "concentration.en",
+        "concentration.ar": "concentration.ar"
+      },
+      "transformations": {
+        "images": {
+          "from": "images[]",
+          "to": "images[]",
+          "transformation": "convertImageFilenameToImageObject",
+          "description": "Convert image filenames to full image objects with Cloudinary URLs"
+        },
+        "notes": {
+          "from": "notes.{top,middle,base}.{en,ar}[]",
+          "to": "notes.{top,middle,base}.{en,ar}[]",
+          "transformation": "validateAndCleanNotes",
+          "description": "Validate fragrance notes structure and clean data"
+        },
+        "seo": {
+          "from": "null",
+          "to": "seo.{metaTitle,metaDescription}.{en,ar}",
+          "transformation": "generateSeoFromProduct",
+          "description": "Generate SEO metadata from product name and description"
+        },
+        "stock": {
+          "from": "inStock",
+          "to": "stock",
+          "transformation": "convertInStockToStockNumber",
+          "description": "Convert boolean inStock to numeric stock quantity"
+        }
+      },
+      "newFields": {
+        "createdAt": "new Date()",
+        "updatedAt": "new Date()",
+        "version": "1",
+        "isActive": "true"
+      },
+      "validation": {
+        "required": [
+          "name.en",
+          "name.ar",
+          "description.en",
+          "description.ar",
+          "price",
+          "category"
+        ],
+        "optional": [
+          "longDescription",
+          "notes",
+          "images",
+          "seo"
+        ],
+        "constraints": {
+          "price": "number > 0",
+          "category": "enum: floral,oriental,fresh,woody,citrus,spicy,aquatic,gourmand",
+          "size": "string, typically \"100ml\""
+        }
+      }
+    },
+    "content": {
+      "sectionMappings": {
+        "nav": {
+          "from": "translations.{en,ar}.nav",
+          "to": "Content{section: \"nav\"}",
+          "transformation": "convertNavigationContent"
+        },
+        "hero": {
+          "from": "translations.{en,ar}.hero",
+          "to": "Content{section: \"hero\"}",
+          "transformation": "convertHeroContent"
+        },
+        "about": {
+          "from": "translations.{en,ar}.about",
+          "to": "Content{section: \"about\"}",
+          "transformation": "convertAboutContent"
+        },
+        "collections": {
+          "from": "translations.{en,ar}.collections",
+          "to": "Content{section: \"collections\"}",
+          "transformation": "convertCollectionsContent"
+        },
+        "contact": {
+          "from": "translations.{en,ar}.contact",
+          "to": "Content{section: \"contact\"}",
+          "transformation": "convertContactContent"
+        }
+      },
+      "transformations": {
+        "multilingualContent": {
+          "description": "Convert flat translation structure to nested content structure",
+          "example": {
+            "from": "translations.en.hero.title + translations.ar.hero.title",
+            "to": "content.{en: {title: \"...\"}, ar: {title: \"...\"}}"
+          }
+        }
+      },
+      "newFields": {
+        "version": "1",
+        "isActive": "true",
+        "updatedBy": "null",
+        "updatedAt": "new Date()"
+      }
+    },
+    "images": {
+      "directMappings": {
+        "filename": "filename",
+        "originalName": "filename",
+        "size": "size",
+        "mimetype": "type"
+      },
+      "cloudinaryMappings": {
+        "cloudinaryUrl": "from_cloudinary_upload_result.secure_url",
+        "cloudinaryId": "from_cloudinary_upload_result.public_id",
+        "width": "from_cloudinary_upload_result.width",
+        "height": "from_cloudinary_upload_result.height"
+      },
+      "newFields": {
+        "tags": "[\"maison-darin\", \"product\"]",
+        "alt": "{en: \"\", ar: \"\"}",
+        "uploadedBy": "null",
+        "uploadedAt": "new Date()"
+      },
+      "optimizations": {
+        "sizes": [
+          "400x400",
+          "800x800",
+          "1200x1200"
+        ],
+        "formats": [
+          "webp",
+          "jpg"
+        ],
+        "quality": "auto"
+      }
+    },
+    "categories": {}
+  },
+  "schemaValidation": {
+    "summary": {
+      "productsWithErrors": 0,
+      "contentWithErrors": 0,
+      "imagesWithErrors": 0
+    },
+    "details": {
+      "products": [],
+      "content": [],
+      "images": []
+    }
+  },
+  "migrationSteps": [
+    {
+      "step": 1,
+      "title": "Upload Images to Cloudinary",
+      "description": "Upload all product images to Cloudinary and get URLs",
+      "script": "cloudinaryImageUploader.js"
+    },
+    {
+      "step": 2,
+      "title": "Transform Product Data",
+      "description": "Convert frontend product data to backend schema format",
+      "script": "productDataTransformer.js"
+    },
+    {
+      "step": 3,
+      "title": "Transform Content Data",
+      "description": "Convert translation data to content management format",
+      "script": "contentDataTransformer.js"
+    },
+    {
+      "step": 4,
+      "title": "Generate Seed Scripts",
+      "description": "Create database seed scripts with transformed data",
+      "script": "generateMigrationSeeds.js"
+    },
+    {
+      "step": 5,
+      "title": "Validate Migration",
+      "description": "Run validation tests on migrated data",
+      "script": "validateMigration.js"
+    }
+  ],
+  "recommendations": [
+    "Review all validation errors before proceeding with migration",
+    "Test image uploads to Cloudinary in development environment first",
+    "Backup existing seed data before replacing with migrated data",
+    "Run comprehensive tests after migration to ensure data integrity",
+    "Consider adding SEO metadata for all products during migration"
+  ]
+}

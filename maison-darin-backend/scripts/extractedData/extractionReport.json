@@ -1,0 +1,63 @@
+{
+  "extractionDate": "2025-09-10T04:02:18.301Z",
+  "summary": {
+    "totalProducts": 11,
+    "totalImages": 5,
+    "languages": [
+      "en",
+      "ar"
+    ],
+    "categories": [
+      "floral",
+      "oriental",
+      "fresh",
+      "citrus",
+      "spicy",
+      "aquatic",
+      "gourmand",
+      "woody"
+    ],
+    "priceRange": {
+      "min": 95,
+      "max": 250
+    },
+    "concentrations": [
+      "Eau de Parfum",
+      "Eau de Toilette",
+      "Extrait de Parfum"
+    ]
+  },
+  "dataQuality": {
+    "missingTranslations": [],
+    "missingImages": [],
+    "incompleteProducts": []
+  },
+  "migrationRequirements": {
+    "cloudinaryUpload": {
+      "totalImages": 5,
+      "estimatedSize": 259975,
+      "imageTypes": [
+        "image/jpeg",
+        "image/png"
+      ]
+    },
+    "databaseSeeding": {
+      "productsToMigrate": 11,
+      "contentSections": [
+        "nav",
+        "hero",
+        "about",
+        "collections",
+        "contact"
+      ],
+      "categoriesCount": 8
+    }
+  },
+  "recommendations": [
+    "Upload all images to Cloudinary with proper naming convention",
+    "Create database seed scripts for products and content",
+    "Implement proper image optimization for different screen sizes",
+    "Add missing Arabic translations for complete multilingual support",
+    "Create backup of original frontend data before migration"
+  ]
+}

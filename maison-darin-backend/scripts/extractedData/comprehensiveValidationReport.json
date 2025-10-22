@@ -1,0 +1,162 @@
+{
+  "comprehensiveValidationReport": {
+    "products": {
+      "totalProducts": 11,
+      "validProducts": 11,
+      "productsWithImages": 11,
+      "productsWithFragranceNotes": 11,
+      "productsWithSeo": 11,
+      "productsWithStock": 11,
+      "featuredProducts": 6,
+      "categoryDistribution": {
+        "floral": 2,
+        "oriental": 3,
+        "fresh": 1,
+        "citrus": 1,
+        "spicy": 1,
+        "aquatic": 1,
+        "gourmand": 1,
+        "woody": 1
+      },
+      "priceRange": {
+        "min": 95,
+        "max": 250,
+        "total": 1820,
+        "average": 165
+      },
+      "completenessRates": {
+        "overall": "100.0",
+        "images": "100.0",
+        "fragranceNotes": "100.0",
+        "seo": "100.0",
+        "stock": "100.0"
+      }
+    },
+    "content": {
+      "totalSections": 6,
+      "validSections": 6,
+      "sectionsWithBothLanguages": 6,
+      "sectionsWithVersioning": 6,
+      "expectedSections": 6,
+      "missingSections": [],
+      "completenessRates": {
+        "overall": "100.0",
+        "bilingual": "100.0",
+        "versioning": "100.0"
+      }
+    },
+    "media": {
+      "totalImages": 33,
+      "validCloudinaryUrls": 33,
+      "imagesWithAltText": 33,
+      "imagesWithOptimization": 0,
+      "mediaFiles": 0,
+      "completenessRates": {
+        "cloudinaryIntegration": "100.0",
+        "altText": "100.0",
+        "optimization": "0.0"
+      }
+    },
+    "multilingual": {
+      "products": {
+        "total": 11,
+        "completeTranslations": 11,
+        "arabicTextValid": 11,
+        "englishTextValid": 11
+      },
+      "content": {
+        "total": 6,
+        "completeTranslations": 6
+      },
+      "completenessRates": {
+        "productTranslations": "100.0",
+        "contentTranslations": "100.0",
+        "arabicValidation": "100.0",
+        "englishValidation": "100.0"
+      }
+    },
+    "integrity": {
+      "duplicateProducts": 0,
+      "orphanedImages": 0,
+      "invalidPrices": 0,
+      "invalidCategories": 0,
+      "totalUsers": 1,
+      "integrityScore": 100
+    },
+    "performance": {
+      "queryTimes": {
+        "productQuery": 14,
+        "searchQuery": 15,
+        "categoryQuery": 7
+      },
+      "indexes": {
+        "productIndexes": 7,
+        "contentIndexes": 6
+      },
+      "performanceScore": 100
+    },
+    "cloudinary": {
+      "totalImageUrls": 33,
+      "cloudinaryUrls": 33,
+      "accessibleUrls": 0,
+      "optimizedUrls": 0,
+      "integrationRates": {
+        "cloudinaryHosted": "100.0",
+        "accessible": "0.0",
+        "optimized": "0.0"
+      }
+    },
+    "overall": {
+      "validationDate": "2025-09-10T05:07:21.949Z",
+      "validationDuration": "2844ms",
+      "overallScore": 90,
+      "status": "VERY_GOOD",
+      "totalErrors": 0,
+      "totalWarnings": 33,
+      "errors": [],
+      "warnings": [
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg"
+      ],
+      "recommendations": [
+        "Check and fix inaccessible Cloudinary image URLs"
+      ]
+    },
+    "summary": {
+      "migrationStatus": "SUCCESS",
+      "dataQuality": "EXCELLENT",
+      "readyForProduction": true
+    }
+  }
+}

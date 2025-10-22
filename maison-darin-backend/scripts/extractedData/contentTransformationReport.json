@@ -1,0 +1,67 @@
+{
+  "transformationDate": "2025-09-10T04:41:23.517Z",
+  "summary": {
+    "totalSectionsTransformed": 5,
+    "sectionsProcessed": [
+      "nav",
+      "hero",
+      "about",
+      "collections",
+      "contact"
+    ],
+    "languages": [
+      "en",
+      "ar"
+    ],
+    "contentTypes": [
+      "navigation",
+      null
+    ]
+  },
+  "sectionDetails": [
+    {
+      "section": "nav",
+      "type": "navigation",
+      "hasEnglish": true,
+      "hasArabic": true,
+      "itemCount": 4
+    },
+    {
+      "section": "hero",
+      "hasEnglish": true,
+      "hasArabic": true,
+      "itemCount": 1
+    },
+    {
+      "section": "about",
+      "hasEnglish": true,
+      "hasArabic": true,
+      "itemCount": 1
+    },
+    {
+      "section": "collections",
+      "hasEnglish": true,
+      "hasArabic": true,
+      "itemCount": 1
+    },
+    {
+      "section": "contact",
+      "hasEnglish": true,
+      "hasArabic": true,
+      "itemCount": 1
+    }
+  ],
+  "dataQuality": {
+    "completeSections": 5,
+    "sectionsWithStructure": 1
+  },
+  "recommendations": [
+    "All content sections successfully transformed to CMS format",
+    "Multilingual content structure maintained",
+    "Navigation items properly structured with URLs",
+    "Hero section includes CTA buttons and background image",
+    "About section values organized with icons and order",
+    "Collections section linked to product categories",
+    "Contact section includes form field definitions"
+  ]
+}

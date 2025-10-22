@@ -1,0 +1,215 @@
+{
+  "imageValidationReport": {
+    "urlAccessibility": {
+      "totalUrls": 33,
+      "accessibleUrls": 0,
+      "cloudinaryUrls": 33,
+      "httpsUrls": 33,
+      "averageResponseTime": 0,
+      "accessibilityRate": "0.0",
+      "cloudinaryRate": "100.0",
+      "httpsRate": "100.0"
+    },
+    "optimization": {
+      "totalImages": 33,
+      "optimizedImages": 0,
+      "webpSupport": 0,
+      "multipleFormats": 0,
+      "responsiveImages": 0,
+      "optimizationRate": "0.0",
+      "webpRate": "0.0",
+      "responsiveRate": "0.0"
+    },
+    "metadata": {
+      "totalImages": 33,
+      "imagesWithAltText": 33,
+      "imagesWithDimensions": 0,
+      "imagesWithFileSize": 0,
+      "imagesWithCloudinaryId": 33,
+      "altTextRate": "100.0",
+      "dimensionsRate": "0.0",
+      "fileSizeRate": "0.0",
+      "cloudinaryIdRate": "100.0"
+    },
+    "transformations": {
+      "transformationTests": 9,
+      "successfulTransformations": 0,
+      "testedTransformations": [
+        {
+          "cloudinaryId": "maison-darin/products/collection-1",
+          "transformation": {
+            "width": 400,
+            "height": 400,
+            "crop": "fill"
+          },
+          "success": false,
+          "error": "Request failed with status code 404"
+        },
+        {
+          "cloudinaryId": "maison-darin/products/collection-1",
+          "transformation": {
+            "width": 800,
+            "quality": "auto",
+            "format": "webp"
+          },
+          "success": false,
+          "error": "Request failed with status code 404"
+        },
+        {
+          "cloudinaryId": "maison-darin/products/collection-1",
+          "transformation": {
+            "width": 200,
+            "height": 200,
+            "crop": "thumb",
+            "gravity": "face"
+          },
+          "success": false,
+          "error": "Request failed with status code 404"
+        },
+        {
+          "cloudinaryId": "maison-darin/products/collection-2",
+          "transformation": {
+            "width": 400,
+            "height": 400,
+            "crop": "fill"
+          },
+          "success": false,
+          "error": "Request failed with status code 404"
+        },
+        {
+          "cloudinaryId": "maison-darin/products/collection-2",
+          "transformation": {
+            "width": 800,
+            "quality": "auto",
+            "format": "webp"
+          },
+          "success": false,
+          "error": "Request failed with status code 404"
+        },
+        {
+          "cloudinaryId": "maison-darin/products/collection-2",
+          "transformation": {
+            "width": 200,
+            "height": 200,
+            "crop": "thumb",
+            "gravity": "face"
+          },
+          "success": false,
+          "error": "Request failed with status code 404"
+        },
+        {
+          "cloudinaryId": "maison-darin/products/collection-3",
+          "transformation": {
+            "width": 400,
+            "height": 400,
+            "crop": "fill"
+          },
+          "success": false,
+          "error": "Request failed with status code 404"
+        },
+        {
+          "cloudinaryId": "maison-darin/products/collection-3",
+          "transformation": {
+            "width": 800,
+            "quality": "auto",
+            "format": "webp"
+          },
+          "success": false,
+          "error": "Request failed with status code 404"
+        },
+        {
+          "cloudinaryId": "maison-darin/products/collection-3",
+          "transformation": {
+            "width": 200,
+            "height": 200,
+            "crop": "thumb",
+            "gravity": "face"
+          },
+          "success": false,
+          "error": "Request failed with status code 404"
+        }
+      ],
+      "successRate": "0.0"
+    },
+    "performance": {
+      "totalLoadTests": 15,
+      "fastLoads": 0,
+      "mediumLoads": 0,
+      "slowLoads": 15,
+      "averageLoadTime": 0,
+      "fastLoadRate": "0.0",
+      "performanceScore": 30
+    },
+    "overall": {
+      "validationDate": "2025-09-10T05:07:30.444Z",
+      "overallScore": 31,
+      "status": "NEEDS_IMPROVEMENT",
+      "totalErrors": 33,
+      "totalWarnings": 15,
+      "errors": [
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg - Request failed with status code 404",
+        "Image URL not accessible: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg - Request failed with status code 404"
+      ],
+      "warnings": [
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-3.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-1.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/collection-2.jpg",
+        "Image load test failed: https://res.cloudinary.com/maison-darin/image/upload/v1725955200/maison-darin/products/hero-perfume.jpg"
+      ],
+      "recommendations": [
+        "Fix inaccessible image URLs to ensure all images load properly",
+        "Enable WebP format for better image compression and performance",
+        "Optimize image sizes and compression to improve loading performance",
+        "Check Cloudinary configuration and API credentials for transformation issues"
+      ]
+    },
+    "summary": {
+      "cloudinaryIntegration": "EXCELLENT",
+      "imageOptimization": "NEEDS_IMPROVEMENT",
+      "metadataCompleteness": "EXCELLENT",
+      "performanceRating": "NEEDS_IMPROVEMENT"
+    }
+  }
+}

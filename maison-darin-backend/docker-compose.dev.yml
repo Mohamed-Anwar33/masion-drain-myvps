@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Development application with hot reload
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: maison-darin-api-dev
+    restart: unless-stopped
+    ports:
+      - "${PORT:-5000}:5000"
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongodb:27017/maison-darin-dev
+      - JWT_SECRET=${JWT_SECRET:-dev-jwt-secret}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:-dev-refresh-secret}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - FRONTEND_URL=${FRONTEND_URL:-http://localhost:3000}
+    depends_on:
+      - mongodb
+    networks:
+      - maison-darin-dev-network
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ./logs:/app/logs
+
+  # MongoDB for development
+  mongodb:
+    image: mongo:6.0
+    container_name: maison-darin-db-dev
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=maison-darin-dev
+    volumes:
+      - mongodb_dev_data:/data/db
+    networks:
+      - maison-darin-dev-network
+
+volumes:
+  mongodb_dev_data:
+    driver: local
+
+networks:
+  maison-darin-dev-network:
+    driver: bridge

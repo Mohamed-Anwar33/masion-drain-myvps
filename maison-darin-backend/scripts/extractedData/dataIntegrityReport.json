@@ -1,0 +1,139 @@
+{
+  "dataIntegrityReport": {
+    "constraints": {
+      "constraintViolations": 0,
+      "uniqueConstraintViolations": 0,
+      "requiredFieldViolations": 1,
+      "dataTypeViolations": 0,
+      "totalViolations": 1
+    },
+    "relationships": {
+      "orphanedRecords": 0,
+      "brokenReferences": 33,
+      "circularReferences": 0,
+      "totalIssues": 33
+    },
+    "consistency": {
+      "inconsistentData": 0,
+      "timestampIssues": 0,
+      "statusInconsistencies": 0,
+      "calculationErrors": 0,
+      "totalIssues": 0
+    },
+    "businessRules": {
+      "businessRuleViolations": 0,
+      "pricingRuleViolations": 0,
+      "inventoryRuleViolations": 0,
+      "contentRuleViolations": 0,
+      "totalViolations": 0
+    },
+    "performance": {
+      "queryTests": [
+        {
+          "name": "Product Listing",
+          "time": 10
+        },
+        {
+          "name": "Product Search",
+          "time": 13
+        },
+        {
+          "name": "Category Filter",
+          "time": 3
+        },
+        {
+          "name": "Featured Products",
+          "time": 3
+        },
+        {
+          "name": "Content Sections",
+          "time": 2
+        }
+      ],
+      "totalTestTime": 31,
+      "averageQueryTime": 6,
+      "slowQueries": 0,
+      "verySlowQueries": 0,
+      "performanceScore": 100
+    },
+    "indexes": {
+      "indexInfo": {},
+      "missingIndexes": 7,
+      "recommendedIndexes": [
+        "products.category_1",
+        "products.featured_1",
+        "products.inStock_1",
+        "products.price_1",
+        "products.name.en_text_name.ar_text_description.en_text_description.ar_text",
+        "contents.section_1",
+        "contents.isActive_1"
+      ],
+      "indexOptimizationScore": 0
+    },
+    "overall": {
+      "validationDate": "2025-09-10T05:07:30.729Z",
+      "overallScore": 72,
+      "criticalIssuesCount": 1,
+      "status": "CRITICAL_ISSUES",
+      "totalErrors": 0,
+      "totalWarnings": 38,
+      "criticalIssues": [
+        "User 68c0a6fd694ab363655b922e missing required fields"
+      ],
+      "errors": [],
+      "warnings": [
+        "Broken image reference in product Floral Symphony: maison-darin/products/collection-1",
+        "Broken image reference in product Floral Symphony: maison-darin/products/hero-perfume",
+        "Broken image reference in product Floral Symphony: maison-darin/products/collection-2",
+        "Broken image reference in product Oriental Mystique: maison-darin/products/collection-2",
+        "Broken image reference in product Oriental Mystique: maison-darin/products/collection-3",
+        "Broken image reference in product Oriental Mystique: maison-darin/products/hero-perfume",
+        "Broken image reference in product Fresh Breeze: maison-darin/products/collection-3",
+        "Broken image reference in product Fresh Breeze: maison-darin/products/collection-1",
+        "Broken image reference in product Fresh Breeze: maison-darin/products/hero-perfume",
+        "Broken image reference in product Royal Garden: maison-darin/products/hero-perfume",
+        "Broken image reference in product Royal Garden: maison-darin/products/collection-1",
+        "Broken image reference in product Royal Garden: maison-darin/products/collection-2",
+        "Broken image reference in product Midnight Rose: maison-darin/products/collection-1",
+        "Broken image reference in product Midnight Rose: maison-darin/products/collection-2",
+        "Broken image reference in product Midnight Rose: maison-darin/products/hero-perfume",
+        "Broken image reference in product Golden Sands: maison-darin/products/collection-2",
+        "Broken image reference in product Golden Sands: maison-darin/products/hero-perfume",
+        "Broken image reference in product Golden Sands: maison-darin/products/collection-3",
+        "Broken image reference in product Citrus Burst: maison-darin/products/collection-2",
+        "Broken image reference in product Citrus Burst: maison-darin/products/hero-perfume",
+        "Broken image reference in product Citrus Burst: maison-darin/products/collection-3",
+        "Broken image reference in product Spice Market: maison-darin/products/collection-3",
+        "Broken image reference in product Spice Market: maison-darin/products/collection-1",
+        "Broken image reference in product Spice Market: maison-darin/products/hero-perfume",
+        "Broken image reference in product Ocean Breeze: maison-darin/products/hero-perfume",
+        "Broken image reference in product Ocean Breeze: maison-darin/products/collection-2",
+        "Broken image reference in product Ocean Breeze: maison-darin/products/collection-3",
+        "Broken image reference in product Vanilla Dreams: maison-darin/products/collection-1",
+        "Broken image reference in product Vanilla Dreams: maison-darin/products/collection-3",
+        "Broken image reference in product Vanilla Dreams: maison-darin/products/hero-perfume",
+        "Broken image reference in product Forest Walk: maison-darin/products/collection-2",
+        "Broken image reference in product Forest Walk: maison-darin/products/collection-1",
+        "Broken image reference in product Forest Walk: maison-darin/products/hero-perfume",
+        "Could not retrieve indexes for collection: products",
+        "Could not retrieve indexes for collection: contents",
+        "Could not retrieve indexes for collection: media",
+        "Could not retrieve indexes for collection: users",
+        "7 recommended indexes are missing"
+      ],
+      "recommendations": [
+        "Fix database constraint violations to ensure data validity",
+        "Resolve broken relationships and orphaned records",
+        "Add recommended database indexes for better performance",
+        "URGENT: Address critical issues that compromise data integrity"
+      ]
+    },
+    "summary": {
+      "dataIntegrity": "COMPROMISED",
+      "constraintCompliance": "VIOLATIONS_FOUND",
+      "relationshipIntegrity": "ISSUES_FOUND",
+      "businessRuleCompliance": "COMPLIANT",
+      "performanceRating": "GOOD"
+    }
+  }
+}

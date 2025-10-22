@@ -1,0 +1,237 @@
+/* Import RTL fixes */
+@import './styles/rtl-fixes.css';
+
+/* Import Admin Layout */
+@import './styles/admin-layout.css';
+
+/* Import Responsive Styles */
+@import './styles/responsive.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+[dir="rtl"] .flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Maison Darin Brand Colors */
+    --dark-tea: 185 38% 10%;       /* #102223 */
+    --teal-green: 172 51% 26%;     /* #1E6660 */
+    --light-brown: 25 44% 65%;     /* #CD9D82 */
+    --beige: 35 65% 87%;           /* #F3E0C8 */
+    --neutral: 0 0% 86%;           /* #DCDCDC */
+    --soft-neutral: 35 18% 89%;    /* #EAE6DF */
+    --soft-pink: 345 33% 94%;      /* #F5E6E8 */
+    --off-white: 60 25% 97%;       /* #F8F8F4 */
+    
+    /* Gold Accent */
+    --gold: 45 90% 70%;
+    --gold-light: 45 100% 85%;
+    
+    /* Semantic Color System */
+    --background: var(--off-white);
+    --foreground: var(--dark-tea);
+
+    --card: var(--beige);
+    --card-foreground: var(--dark-tea);
+
+    --popover: var(--soft-neutral);
+    --popover-foreground: var(--dark-tea);
+
+    --primary: var(--teal-green);
+    --primary-foreground: var(--off-white);
+
+    --secondary: var(--light-brown);
+    --secondary-foreground: var(--dark-tea);
+
+    --muted: var(--soft-neutral);
+    --muted-foreground: var(--teal-green);
+
+    --accent: var(--gold);
+    --accent-foreground: var(--dark-tea);
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: var(--off-white);
+
+    --border: var(--neutral);
+    --input: var(--soft-neutral);
+    --ring: var(--teal-green);
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--teal-green)), hsl(var(--dark-tea)));
+    --gradient-luxury: linear-gradient(135deg, hsl(var(--light-brown)), hsl(var(--beige)));
+    --gradient-glass: linear-gradient(135deg, 
+      hsl(var(--off-white) / 0.25), 
+      hsl(var(--beige) / 0.15));
+    
+    /* Shadows */
+    --shadow-luxury: 0 20px 40px -12px hsl(var(--dark-tea) / 0.15);
+    --shadow-glass: 0 8px 32px 0 hsl(var(--dark-tea) / 0.1);
+    
+    /* Typography Scale */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    --font-size-6xl: 3.75rem;
+    
+    /* Spacing Scale */
+    --spacing-luxury: 4rem;
+    --spacing-section: 6rem;
+  }
+
+  .dark {
+    --background: var(--dark-tea);
+    --foreground: var(--off-white);
+
+    --card: var(--teal-green);
+    --card-foreground: var(--off-white);
+
+    --popover: var(--dark-tea);
+    --popover-foreground: var(--off-white);
+
+    --primary: var(--light-brown);
+    --primary-foreground: var(--dark-tea);
+
+    --secondary: var(--soft-neutral);
+    --secondary-foreground: var(--dark-tea);
+
+    --muted: var(--teal-green);
+    --muted-foreground: var(--beige);
+
+    --accent: var(--gold);
+    --accent-foreground: var(--dark-tea);
+
+    --border: var(--teal-green);
+    --input: var(--teal-green);
+    --ring: var(--light-brown);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', 'Cairo', sans-serif;
+    line-height: 1.6;
+  }
+
+  /* Arabic Typography */
+  [dir="rtl"] {
+    font-family: 'Cairo', 'Inter', sans-serif;
+    line-height: 1.8;
+  }
+
+  /* Heading Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', 'Cairo', serif;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
+    font-family: 'Cairo', 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Effect */
+  .glass {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--off-white) / 0.2);
+    box-shadow: var(--shadow-glass);
+  }
+
+  /* Luxury Button Variants */
+  .btn-luxury {
+    @apply relative overflow-hidden transition-all duration-300;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-luxury);
+  }
+
+  .btn-luxury::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.3), transparent);
+    transition: left 0.6s;
+  }
+
+  .btn-luxury:hover::before {
+    left: 100%;
+  }
+
+  /* Gold Accent Lines */
+  .gold-accent {
+    position: relative;
+  }
+
+  .gold-accent::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+  }
+
+  /* Emblem Watermark */
+  .emblem-bg {
+    position: relative;
+  }
+
+  .emblem-bg::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 200px;
+    height: 200px;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L60 40 L90 40 L68 58 L78 88 L50 70 L22 88 L32 58 L10 40 L40 40 Z' fill='none' stroke='%23CD9D82' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Responsive Arabic/RTL utilities */
+  .rtl\:mr-auto[dir="rtl"] { margin-right: auto; }
+  .rtl\:ml-auto[dir="rtl"] { margin-left: auto; }
+  .rtl\:text-right[dir="rtl"] { text-align: right; }
+  .rtl\:text-left[dir="rtl"] { text-align: left; }
+}
