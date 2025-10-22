@@ -55,7 +55,7 @@ const EmailSettingsManager: React.FC = () => {
   const loadSettings = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/site-settings/email', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/site-settings/email`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -100,7 +100,7 @@ const EmailSettingsManager: React.FC = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/site-settings/email', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/site-settings/email`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ const EmailSettingsManager: React.FC = () => {
     try {
       setTesting(true);
       
-      const response = await fetch('http://localhost:5000/api/site-settings/email/test', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/site-settings/email/test`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

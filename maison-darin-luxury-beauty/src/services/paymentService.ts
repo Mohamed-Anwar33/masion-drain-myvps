@@ -36,7 +36,7 @@ export interface PaymentResult {
 }
 
 class PaymentService {
-  private baseUrl = '/api/payments';
+  private baseUrl = `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/payments`;
 
   // Get available payment methods
   async getPaymentMethods(currency = 'EGP'): Promise<{ success: boolean; paymentMethods?: PaymentMethod[]; error?: string }> {

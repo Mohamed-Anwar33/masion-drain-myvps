@@ -63,7 +63,8 @@ const SystemStatus: React.FC = () => {
 
   const testBackend = async (): Promise<'online' | 'offline'> => {
     try {
-      const response = await fetch('/api/health', { timeout: 5000 } as any);
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const response = await fetch(`${apiUrl}/health`, { timeout: 5000 } as any);
       return response.ok ? 'online' : 'offline';
     } catch {
       return 'offline';
@@ -73,7 +74,7 @@ const SystemStatus: React.FC = () => {
   const testDatabase = async (): Promise<'connected' | 'disconnected'> => {
     try {
       const token = localStorage.getItem('authToken') || localStorage.getItem('token');
-      const response = await fetch('/api/orders', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/orders`, {
         headers: token ? { 'Authorization': `Bearer ${token}` } : {},
         timeout: 5000
       } as any);
@@ -86,7 +87,7 @@ const SystemStatus: React.FC = () => {
 
   const testPayPal = async (): Promise<'configured' | 'not-configured' | 'error'> => {
     try {
-      const response = await fetch('/api/paypal/config', { timeout: 5000 } as any);
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/paypal/config`, { timeout: 5000 } as any);
       if (response.ok) {
         const data = await response.json();
         return data.enabled && data.clientId ? 'configured' : 'not-configured';

@@ -55,7 +55,7 @@ const PayPalSettings: React.FC = () => {
   const fetchPayPalSettings = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/paypal/settings', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/paypal/settings`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`
         }
@@ -81,7 +81,7 @@ const PayPalSettings: React.FC = () => {
   const handleSave = async () => {
     try {
       setSaving(true);
-      const response = await fetch('/api/paypal/settings', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/paypal/settings`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ const PayPalSettings: React.FC = () => {
   const handleTest = async () => {
     try {
       setTesting(true);
-      const response = await fetch('/api/paypal/test', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/paypal/test`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`

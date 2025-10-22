@@ -67,9 +67,9 @@ export const ImageUpload = ({
         // Create FormData for upload
         const formData = new FormData();
         formData.append('image', file);
-        formData.append('folder', folder);
+        formData.append('folder', 'maison-darin/products');
 
-        const response = await fetch('/api/media/upload', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/media/upload`, {
           method: 'POST',
           body: formData,
           headers: {

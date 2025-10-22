@@ -50,7 +50,7 @@ const PayPalTestPanel: React.FC = () => {
 
       // Test payment creation
       try {
-        const paymentTest = await fetch('/api/paypal/create-payment', {
+        const paymentTest = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/paypal/create-payment`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

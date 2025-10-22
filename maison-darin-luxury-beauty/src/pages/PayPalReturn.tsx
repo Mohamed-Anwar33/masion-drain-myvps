@@ -32,7 +32,7 @@ const PayPalReturn: React.FC = () => {
         console.log('\n💳 Sending capture request to backend...');
 
         // Capture the payment
-        const response = await fetch(`http://localhost:5000/api/paypal/orders/${token}/capture`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/paypal/orders/${token}/capture`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

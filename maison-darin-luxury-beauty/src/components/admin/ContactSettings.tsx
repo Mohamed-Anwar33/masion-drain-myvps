@@ -62,7 +62,7 @@ export function ContactSettings() {
   const loadSettings = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch('/api/site-settings');
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/site-settings`);
       if (response.ok) {
         const data = await response.json();
         if (data.success && data.data) {
@@ -122,7 +122,7 @@ export function ContactSettings() {
         socialMedia: settings.socialMedia
       };
 
-      const response = await fetch('/api/site-settings', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/site-settings`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

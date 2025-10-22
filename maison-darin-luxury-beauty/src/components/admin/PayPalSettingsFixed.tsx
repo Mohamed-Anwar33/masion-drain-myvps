@@ -40,7 +40,7 @@ const PayPalSettingsFixed: React.FC = () => {
       }
 
       console.log('Loading PayPal settings...');
-      const response = await fetch('/api/paypal/settings', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/paypal/settings`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -103,7 +103,7 @@ const PayPalSettingsFixed: React.FC = () => {
       console.log('Saving PayPal config:', config);
       console.log('Using token:', token ? token.substring(0, 20) + '...' : 'NO TOKEN');
 
-      const response = await fetch('/api/paypal/settings', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/paypal/settings`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -187,7 +187,7 @@ const PayPalSettingsFixed: React.FC = () => {
         return;
       }
 
-      const response = await fetch('/api/paypal/test', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/paypal/test`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

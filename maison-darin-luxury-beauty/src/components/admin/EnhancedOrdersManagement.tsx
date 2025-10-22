@@ -89,7 +89,7 @@ const EnhancedOrdersManagement: React.FC = () => {
         return;
       }
 
-      const response = await fetch('/api/orders?sortBy=createdAt&sortOrder=desc&limit=50', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/orders?sortBy=createdAt&sortOrder=desc&limit=50`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -147,7 +147,7 @@ const EnhancedOrdersManagement: React.FC = () => {
       setUpdating(true);
       const token = localStorage.getItem('authToken') || localStorage.getItem('token');
 
-      const response = await fetch(`/api/orders/${orderId}/status`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/orders/${orderId}/status`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -83,7 +83,7 @@ const SiteInfoManager: React.FC = () => {
   const loadSettings = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/site-settings', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/site-settings`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -119,7 +119,7 @@ const SiteInfoManager: React.FC = () => {
         socialMedia
       };
 
-      const response = await fetch('http://localhost:5000/api/site-settings', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/site-settings`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -115,7 +115,7 @@ export const PayPalButtons: React.FC<PayPalButtonsProps> = ({
         createOrder: async (data: any, actions: any) => {
           try {
             // Create order through our backend API
-            const response = await fetch('http://localhost:5000/api/paypal/orders', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/paypal/orders`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -166,7 +166,7 @@ export const PayPalButtons: React.FC<PayPalButtonsProps> = ({
         onApprove: async (data: any, actions: any) => {
           try {
             // Capture payment through our backend API
-            const response = await fetch(`http://localhost:5000/api/paypal/orders/${data.orderID}/capture`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/paypal/orders/${data.orderID}/capture`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

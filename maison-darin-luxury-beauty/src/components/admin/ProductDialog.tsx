@@ -204,7 +204,7 @@ export function ProductDialog({ isOpen, onClose, product, onSave }: ProductDialo
         uploadFormData.append('tags', 'product,maison-darin');
 
         try {
-          const response = await fetch('http://localhost:5000/api/media/upload', {
+          const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/media/upload`, {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('authToken')}`
@@ -306,8 +306,8 @@ export function ProductDialog({ isOpen, onClose, product, onSave }: ProductDialo
       setIsLoading(true);
       
       const url = product 
-        ? `http://localhost:5000/api/products/${product._id}`
-        : 'http://localhost:5000/api/products';
+        ? `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/products/${product._id}`
+        : `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/products`;
       
       const method = product ? 'PUT' : 'POST';
       

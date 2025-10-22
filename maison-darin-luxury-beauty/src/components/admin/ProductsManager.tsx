@@ -64,7 +64,7 @@ export function ProductsManager({ currentLang }: ProductsManagerProps) {
       setIsLoading(true);
       console.log('🔄 جاري تحميل المنتجات...');
       
-      const response = await fetch('http://localhost:5000/api/products', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/products`, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -166,7 +166,7 @@ export function ProductsManager({ currentLang }: ProductsManagerProps) {
       setIsDeleting(true);
       setDeleteProductId(productId);
       
-      const response = await fetch(`http://localhost:5000/api/products/${productId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/products/${productId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
