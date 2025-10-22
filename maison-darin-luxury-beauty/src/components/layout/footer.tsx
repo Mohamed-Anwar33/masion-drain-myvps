@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { Instagram, Facebook, Twitter, Mail, Phone, MapPin, Youtube } from "lucide-react";
 import { FaTiktok, FaSnapchatGhost } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+// Newsletter components hidden - imports commented out
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 
@@ -91,7 +92,7 @@ export const Footer = ({ currentLang, translations }: FooterProps) => {
       </div>
 
       <div className="container mx-auto px-4 py-16 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -181,8 +182,44 @@ export const Footer = ({ currentLang, translations }: FooterProps) => {
             </ul>
           </motion.div> */}
 
-          {/* Newsletter & Contact */}
+          {/* Contact Info Only */}
           <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="space-y-4"
+          >
+            <h4 className="text-lg font-semibold text-accent">
+              {currentLang === 'ar' ? "معلومات التواصل" : "Contact Info"}
+            </h4>
+            
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-sm">
+                <MapPin className="h-4 w-4 text-accent" />
+                <span className="text-primary-foreground/80">
+                  {siteSettings?.contactInfo?.address?.[currentLang] || 
+                    (currentLang === 'ar' ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia')
+                  }
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <Mail className="h-4 w-4 text-accent" />
+                <span className="text-primary-foreground/80">
+                  {siteSettings?.contactInfo?.email || 'info@maison-darin.com'}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <Phone className="h-4 w-4 text-accent" />
+                <span className="text-primary-foreground/80">
+                  {siteSettings?.contactInfo?.phone || '+966 50 123 4567'}
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Newsletter section hidden - no functionality implemented yet */}
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -210,30 +247,7 @@ export const Footer = ({ currentLang, translations }: FooterProps) => {
                 {currentLang === 'ar' ? "اشتراك" : "Subscribe"}
               </Button>
             </div>
-
-            <div className="space-y-2 mt-6">
-              <div className="flex items-center gap-2 text-sm">
-                <MapPin className="h-4 w-4 text-accent" />
-                <span className="text-primary-foreground/80">
-                  {siteSettings?.contactInfo?.address?.[currentLang] || 
-                    (currentLang === 'ar' ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia')
-                  }
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                <Mail className="h-4 w-4 text-accent" />
-                <span className="text-primary-foreground/80">
-                  {siteSettings?.contactInfo?.email || 'info@maison-darin.com'}
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                <Phone className="h-4 w-4 text-accent" />
-                <span className="text-primary-foreground/80">
-                  {siteSettings?.contactInfo?.phone || '+966 50 123 4567'}
-                </span>
-              </div>
-            </div>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         <Separator className="bg-primary-foreground/20 my-8" />
