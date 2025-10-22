@@ -66,8 +66,9 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
   return (
     <section 
       id="about" 
-      className="py-section bg-gradient-to-br from-dark-tea to-teal-green relative"
+      className="py-section bg-gradient-to-br from-dark-tea to-teal-green relative w-full section-no-gap"
       dir={isRTL ? 'rtl' : 'ltr'}
+      style={{ margin: 0, padding: 0 }}
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">

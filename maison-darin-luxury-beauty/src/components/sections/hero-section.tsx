@@ -67,14 +67,15 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center relative overflow-hidden emblem-bg pt-20 md:pt-0"
+      className="min-h-screen flex items-center relative overflow-hidden emblem-bg pt-16 md:pt-20 hero-mobile-fix w-full"
       dir={isRTL ? 'rtl' : 'ltr'}
+      style={{ margin: 0, padding: 0 }}
     >
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-dark-tea via-teal-green to-dark-tea opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-br from-dark-tea via-teal-green to-dark-tea opacity-90 hero-gradient-full" />
       
-      <div className="container mx-auto px-4 sm:px-6 py-20 sm:py-24 lg:py-32 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="container mx-auto px-4 sm:px-6 py-20 sm:py-24 lg:py-32 relative z-10 w-full max-w-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
           
           {/* Left Side - Typography Statement */}
           <motion.div 

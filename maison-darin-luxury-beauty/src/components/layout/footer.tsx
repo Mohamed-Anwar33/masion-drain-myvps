@@ -84,7 +84,7 @@ export const Footer = ({ currentLang, translations }: FooterProps) => {
   // ];
 
   return (
-    <footer className="bg-primary text-primary-foreground relative overflow-hidden">
+    <footer className="bg-primary text-primary-foreground relative overflow-hidden w-full section-no-gap" style={{ margin: 0, padding: 0 }}>
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent" />

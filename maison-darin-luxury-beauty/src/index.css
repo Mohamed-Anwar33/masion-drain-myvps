@@ -7,6 +7,9 @@
 /* Import Responsive Styles */
 @import './styles/responsive.css';
 
+/* Import Mobile Fixes */
+@import './styles/mobile-fixes.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -137,13 +140,22 @@ All colors MUST be HSL.
   }
 
   html {
-    scroll-padding-top: 100px; /* Accounts for fixed header when scrolling to anchors */
+    scroll-padding-top: 70px; /* Accounts for fixed header when scrolling to anchors */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-background text-foreground font-sans;
     font-family: 'Inter', 'Cairo', sans-serif;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    min-height: 100vh;
   }
 
   /* Arabic Typography */
@@ -235,12 +247,12 @@ All colors MUST be HSL.
 
   /* Fixed header offset for content */
   .header-offset {
-    padding-top: 100px; /* Accounts for fixed header height */
+    padding-top: 70px; /* Accounts for fixed header height */
   }
   
   @media (min-width: 768px) {
     .header-offset {
-      padding-top: 120px; /* Slightly more space on larger screens */
+      padding-top: 80px; /* Slightly more space on larger screens */
     }
   }
 
@@ -353,5 +365,90 @@ All colors MUST be HSL.
   
   [dir="rtl"] .recharts-legend-wrapper {
     direction: rtl;
+  }
+  
+  /* Mobile Layout Fixes */
+  .mobile-full-width {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+  }
+  
+  /* Hero Section Mobile Fixes */
+  .hero-section-mobile {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  /* Remove any white space between sections */
+  .section-no-gap {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .section-no-gap + .section-no-gap {
+    margin-top: 0;
+  }
+  
+  /* Ensure full width containers */
+  .container-full {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Mobile specific fixes for hero section */
+  @media (max-width: 768px) {
+    .hero-mobile-fix {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      padding-left: 0;
+      padding-right: 0;
+    }
+    
+    .hero-gradient-full {
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+    
+    /* Ensure no horizontal scroll */
+    html, body {
+      overflow-x: hidden !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    
+    /* Fix any container that might cause overflow */
+    .container, .mx-auto {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+    }
+    
+    /* Header mobile improvements */
+    header {
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      background: rgba(248, 248, 244, 0.95) !important;
+      border-bottom: 1px solid rgba(220, 220, 220, 0.3) !important;
+    }
+    
+    /* Compact header on mobile */
+    header .container {
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+    
+    /* Logo responsive sizing */
+    header img {
+      height: 2.5rem !important;
+      width: auto !important;
+    }
   }
 }

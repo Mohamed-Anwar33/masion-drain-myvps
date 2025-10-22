@@ -94,38 +94,46 @@ const Index = () => {
   }
 
   return (
-    <div id="top" className="min-h-screen bg-background">
+    <div id="top" className="min-h-screen bg-background w-full overflow-x-hidden" style={{ margin: 0, padding: 0 }}>
       <Header 
         currentLang={currentLang}
         onLanguageChange={handleLanguageChange}
         translations={t}
       />
       
-      <main>
+      <main className="w-full" style={{ margin: 0, padding: 0 }}>
         {homePageContent?.hero?.showSection !== false && (
-          <HeroSection 
-            translations={t}
-            currentLang={currentLang}
-          />
+          <div className="section-no-gap w-full">
+            <HeroSection 
+              translations={t}
+              currentLang={currentLang}
+            />
+          </div>
         )}
         
         {homePageContent?.showAboutSection !== false && (
-          <AboutSection 
-            currentLang={currentLang}
-          />
+          <div className="section-no-gap w-full">
+            <AboutSection 
+              currentLang={currentLang}
+            />
+          </div>
         )}
         
         {homePageContent?.showCategories !== false && (
-          <CollectionsSection 
-            currentLang={currentLang}
-          />
+          <div className="section-no-gap w-full">
+            <CollectionsSection 
+              currentLang={currentLang}
+            />
+          </div>
         )}
         
         {homePageContent?.showContact !== false && (
-          <ContactSection 
-            translations={t}
-            currentLang={currentLang}
-          />
+          <div className="section-no-gap w-full">
+            <ContactSection 
+              translations={t}
+              currentLang={currentLang}
+            />
+          </div>
         )}
       </main>
 

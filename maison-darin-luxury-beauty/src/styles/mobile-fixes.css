@@ -1,0 +1,189 @@
+/* Mobile Layout Fixes - Comprehensive Solution for White Space Issues */
+
+/* Reset all margins and paddings */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+  /* Prevent horizontal scrolling */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    position: relative;
+  }
+  
+  /* Full width for main containers */
+  #root, #top {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Hero section full width */
+  #home {
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    position: relative;
+  }
+  
+  /* Hero gradient background full width */
+  #home .hero-gradient-full {
+    width: 100vw !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+  
+  /* Container fixes */
+  .container, .mx-auto {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Section spacing fixes */
+  .section-no-gap {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Remove any negative margins */
+  [class*="-m"], [class*="-mx"], [class*="-ml"], [class*="-mr"] {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  /* Grid layout fixes */
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Image responsive fixes */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Prevent any element from causing overflow */
+  * {
+    max-width: 100% !important;
+  }
+  
+  /* Footer full width */
+  footer {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Header fixes */
+  header {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 64px !important;
+  }
+  
+  /* Header container fixes */
+  header .container {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+  
+  /* Logo size fixes for mobile */
+  header img {
+    height: 2.5rem !important; /* h-10 equivalent */
+    width: auto !important;
+    max-width: 4rem !important;
+  }
+  
+  /* Main content area */
+  main {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Specific hero section container */
+  .hero-mobile-fix {
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Ensure sections don't have gaps */
+  section + section {
+    margin-top: 0 !important;
+  }
+  
+  /* Fix any padding that might cause issues */
+  .py-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* Extra small devices (phones in portrait) */
+@media (max-width: 480px) {
+  .container, .mx-auto {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  .hero-mobile-fix {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+}
+
+/* Landscape phones */
+@media (max-width: 768px) and (orientation: landscape) {
+  #home {
+    min-height: 100vh !important;
+  }
+}
+
+/* RTL (Arabic) specific fixes */
+[dir="rtl"] {
+  /* Ensure RTL doesn't cause horizontal overflow */
+  overflow-x: hidden !important;
+}
+
+@media (max-width: 768px) {
+  [dir="rtl"] #home {
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+  }
+  
+  [dir="rtl"] .container, [dir="rtl"] .mx-auto {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}

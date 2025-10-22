@@ -44,7 +44,7 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-4 py-2">
         <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
           {/* Logo */}
           <Link to="/">
@@ -56,7 +56,7 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
               <img 
                 src={logo} 
                 alt="Logo" 
-                className="h-20 w-32 object-contain drop-shadow-lg"
+                className="h-12 w-20 object-contain drop-shadow-lg"
                 style={{
                   filter: 'brightness(0) saturate(100%) invert(20%) sepia(51%) saturate(1234%) hue-rotate(139deg) brightness(95%) contrast(95%)'
                 }}
@@ -65,7 +65,7 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-8'}`}>
+          <nav className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-6' : 'space-x-6'}`}>
             <Link to="/#top" className="text-foreground hover:text-primary transition-colors duration-300 font-medium">
               {extractString(translations?.nav?.home)}
             </Link>
@@ -142,7 +142,7 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden fixed top-[88px] left-0 right-0 bg-white border-t border-gray-200 shadow-xl z-[9999]"
+            className="md:hidden fixed top-[64px] left-0 right-0 bg-white border-t border-gray-200 shadow-xl z-[9999]"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -232,7 +232,7 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
         {isMobileMenuOpen && (
           <div 
             className="md:hidden fixed inset-0 bg-black/20 z-[9998]"
-            style={{ top: '88px' }}
+            style={{ top: '64px' }}
             onClick={() => setIsMobileMenuOpen(false)}
           />
         )}
