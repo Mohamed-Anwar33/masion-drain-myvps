@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingBag, Search, Menu, User, LogOut } from "lucide-react";
+import { ShoppingBag, Menu, LogOut, X } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
+import { useState } from "react";
 import logo from "@/assets/logo.png";
 
 interface HeaderProps {
@@ -19,6 +20,7 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
   const { state, logout } = useAuth();
   const cartItemCount = getItemCount();
   const isRTL = currentLang === 'ar';
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Helper function to extract string value - handles nested objects and text fields
   const extractString = (value: any): string => {
@@ -86,10 +88,6 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
             />
             
             <div className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-              <Button variant="ghost" size="icon" className="hover:bg-muted/50">
-                <Search className="w-5 h-5" />
-              </Button>
-              
               <Button 
                 variant="ghost" 
                 size="icon" 
@@ -127,11 +125,118 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
             </div>
 
             {/* Mobile Menu */}
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="w-5 h-5" />
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="md:hidden"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </Button>
           </div>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isMobileMenuOpen && (
+          <motion.div
+            className="md:hidden fixed top-[88px] left-0 right-0 bg-white border-t border-gray-200 shadow-xl z-[9999]"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            dir={isRTL ? 'rtl' : 'ltr'}
+          >
+            <div className="px-4 py-6 space-y-4">
+              {/* Mobile Navigation Links */}
+              <div className="space-y-2">
+                <Link 
+                  to="/#top" 
+                  className="block w-full text-right px-4 py-3 text-lg font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-lg transition-all duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  الرئيسية
+                </Link>
+                <Link 
+                  to="/products" 
+                  className="block w-full text-right px-4 py-3 text-lg font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-lg transition-all duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  المجموعات
+                </Link>
+                <Link 
+                  to="/#about" 
+                  className="block w-full text-right px-4 py-3 text-lg font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-lg transition-all duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  من نحن
+                </Link>
+                <Link 
+                  to="/#contact" 
+                  className="block w-full text-right px-4 py-3 text-lg font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-lg transition-all duration-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  اتصل بنا
+                </Link>
+              </div>
+
+              {/* Mobile Actions */}
+              <div className="border-t border-gray-200 pt-4 space-y-2">
+                <Button 
+                  variant="ghost" 
+                  className="w-full justify-between text-right px-4 py-3 text-lg font-medium hover:bg-gray-50 rounded-lg"
+                  onClick={() => {
+                    toggleCart();
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  <div className="flex items-center">
+                    {cartItemCount > 0 && (
+                      <Badge 
+                        className="h-6 w-6 rounded-full p-0 flex items-center justify-center text-xs bg-primary text-primary-foreground"
+                      >
+                        {cartItemCount}
+                      </Badge>
+                    )}
+                  </div>
+                  <div className="flex items-center">
+                    <span>سلة التسوق</span>
+                    <ShoppingBag className="w-5 h-5 ml-3" />
+                  </div>
+                </Button>
+
+                {/* Auth Buttons for Mobile */}
+                {state.isAuthenticated && (
+                  <Button 
+                    variant="ghost" 
+                    className="w-full justify-end text-right px-4 py-3 text-lg font-medium hover:bg-gray-50 rounded-lg"
+                    onClick={() => {
+                      logout();
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    <div className="flex items-center">
+                      <span>تسجيل خروج</span>
+                      <LogOut className="w-5 h-5 ml-3" />
+                    </div>
+                  </Button>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div 
+            className="md:hidden fixed inset-0 bg-black/20 z-[9998]"
+            style={{ top: '88px' }}
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
       </div>
     </motion.header>
   );
