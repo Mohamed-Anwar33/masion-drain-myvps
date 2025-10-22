@@ -8,6 +8,8 @@
   overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
+  display: flex;
+  flex-direction: row;
 }
 
 /* Sidebar Positioning and Styling */
@@ -22,7 +24,9 @@
   border: 1px solid hsl(var(--border));
   box-shadow: 0 4px 12px 0 hsl(var(--foreground) / 0.1);
   transition: all 0.3s ease-in-out;
-  width: 280px;
+  width: 320px;
+  margin: 0;
+  padding: 0;
 }
 
 /* RTL Sidebar Positioning */
@@ -43,11 +47,13 @@
 /* Main Content Area */
 .admin-main-content {
   min-height: 100vh;
-  background: hsl(var(--background));
+  background: transparent;
   transition: all 0.3s ease-in-out;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 /* RTL Content Direction */
@@ -73,12 +79,13 @@
 
 /* Content Area */
 .admin-content {
-  background: hsl(var(--background));
+  background: transparent;
   min-height: calc(100vh - 4rem);
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
   padding: 1rem;
+  margin: 0;
 }
 
 [dir="rtl"] .admin-content {

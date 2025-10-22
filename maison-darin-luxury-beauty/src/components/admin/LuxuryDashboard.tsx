@@ -157,10 +157,11 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
   }
 
   return (
-    <div className="space-y-6 w-full max-w-full overflow-x-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+    <div className="dashboard-compact" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 w-full">
-        <div>
+      <div className="dashboard-section">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 w-full">
+          <div>
           <h1 className="text-3xl font-display font-bold text-off-white mb-2">
             {currentLang === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
           </h1>
@@ -183,10 +184,12 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
             {currentLang === 'ar' ? 'تحديث' : 'Refresh'}
           </Button>
         </div>
+        </div>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 w-full">
+      <div className="dashboard-section">
+        <div className="dashboard-stats-grid">
         {stats.map((stat, index) => (
           <motion.div
             key={stat.title}
@@ -194,8 +197,8 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
           >
-            <Card className="bg-off-white/95 backdrop-blur-sm border-gold/20 shadow-luxury hover:shadow-xl transition-all duration-300 group w-full">
-              <CardContent className="p-6">
+            <Card className="bg-off-white/95 backdrop-blur-sm border-gold/20 shadow-luxury hover:shadow-xl transition-all duration-300 group w-full h-full">
+              <CardContent className="p-6 h-full flex flex-col justify-between">
                 <div className="flex items-center justify-between mb-4">
                   <div className={`p-3 rounded-lg bg-gradient-to-r ${stat.color}`}>
                     <stat.icon className="w-6 h-6 text-white" />
@@ -220,10 +223,12 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
             </Card>
           </motion.div>
         ))}
+        </div>
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 w-full">
+      <div className="dashboard-section">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
         {/* Revenue Chart */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -241,8 +246,8 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
                 {currentLang === 'ar' ? 'إجمالي الإيرادات والطلبات خلال الأشهر الستة الماضية' : 'Total revenue and orders over the last 6 months'}
               </CardDescription>
             </CardHeader>
-            <CardContent className="p-4 lg:p-6">
-              <div className="h-64 lg:h-80 w-full">
+            <CardContent className="p-6">
+              <div className="h-80 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={revenueData}>
                     <defs>
@@ -288,8 +293,8 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
                 <Package className="w-5 h-5 text-gold" />
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-4 lg:p-6">
-              <div className="h-48 lg:h-64 w-full">
+            <CardContent className="p-6">
+              <div className="h-64 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
@@ -326,10 +331,12 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
             </CardContent>
           </Card>
         </motion.div>
+        </div>
       </div>
 
       {/* Bottom Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 w-full">
+      <div className="dashboard-section">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full">
         {/* Top Products */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -343,7 +350,7 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
                 <Star className="w-5 h-5 text-gold" />
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-4 lg:p-6">
+            <CardContent className="p-6">
               <div className="space-y-4">
                 {topProducts.map((product, index) => (
                   <div key={index} className="flex items-center space-x-4 rtl:space-x-reverse p-3 rounded-lg bg-gold/5 hover:bg-gold/10 transition-colors">
@@ -379,7 +386,7 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
                 <Clock className="w-5 h-5 text-gold" />
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-4 lg:p-6">
+            <CardContent className="p-6">
               <div className="space-y-4">
                 {recentOrdersData.map((order, index) => (
                   <div key={order._id} className="flex items-center justify-between p-3 rounded-lg bg-gold/5 hover:bg-gold/10 transition-colors">
@@ -413,6 +420,7 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
             </CardContent>
           </Card>
         </motion.div>
+        </div>
       </div>
     </div>
   );
