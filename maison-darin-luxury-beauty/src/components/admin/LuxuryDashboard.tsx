@@ -157,9 +157,9 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
   }
 
   return (
-    <div className="space-y-6" dir={isRTL ? 'rtl' : 'ltr'}>
+    <div className="space-y-6 w-full max-w-full overflow-x-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 w-full">
         <div>
           <h1 className="text-3xl font-display font-bold text-off-white mb-2">
             {currentLang === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
@@ -186,7 +186,7 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 w-full">
         {stats.map((stat, index) => (
           <motion.div
             key={stat.title}
@@ -194,7 +194,7 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
           >
-            <Card className="bg-off-white/95 backdrop-blur-sm border-gold/20 shadow-luxury hover:shadow-xl transition-all duration-300 group">
+            <Card className="bg-off-white/95 backdrop-blur-sm border-gold/20 shadow-luxury hover:shadow-xl transition-all duration-300 group w-full">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className={`p-3 rounded-lg bg-gradient-to-r ${stat.color}`}>
@@ -223,7 +223,7 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 w-full">
         {/* Revenue Chart */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -231,7 +231,7 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
           transition={{ delay: 0.4 }}
           className="lg:col-span-2"
         >
-          <Card className="bg-off-white/95 backdrop-blur-sm border-gold/20 shadow-luxury">
+          <Card className="bg-off-white/95 backdrop-blur-sm border-gold/20 shadow-luxury w-full overflow-hidden">
             <CardHeader>
               <CardTitle className="text-dark-tea flex items-center justify-between">
                 <span>{currentLang === 'ar' ? 'الإيرادات الشهرية' : 'Monthly Revenue'}</span>
@@ -241,8 +241,8 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
                 {currentLang === 'ar' ? 'إجمالي الإيرادات والطلبات خلال الأشهر الستة الماضية' : 'Total revenue and orders over the last 6 months'}
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="h-80">
+            <CardContent className="p-4 lg:p-6">
+              <div className="h-64 lg:h-80 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={revenueData}>
                     <defs>
@@ -281,15 +281,15 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5 }}
         >
-          <Card className="bg-off-white/95 backdrop-blur-sm border-gold/20 shadow-luxury">
+          <Card className="bg-off-white/95 backdrop-blur-sm border-gold/20 shadow-luxury w-full overflow-hidden">
             <CardHeader>
               <CardTitle className="text-dark-tea flex items-center justify-between">
                 <span>{currentLang === 'ar' ? 'توزيع الفئات' : 'Category Distribution'}</span>
                 <Package className="w-5 h-5 text-gold" />
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="h-64">
+            <CardContent className="p-4 lg:p-6">
+              <div className="h-48 lg:h-64 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
@@ -329,21 +329,21 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
       </div>
 
       {/* Bottom Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 w-full">
         {/* Top Products */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
         >
-          <Card className="bg-off-white/95 backdrop-blur-sm border-gold/20 shadow-luxury">
+          <Card className="bg-off-white/95 backdrop-blur-sm border-gold/20 shadow-luxury w-full overflow-hidden">
             <CardHeader>
               <CardTitle className="text-dark-tea flex items-center justify-between">
                 <span>{currentLang === 'ar' ? 'أفضل المنتجات' : 'Top Products'}</span>
                 <Star className="w-5 h-5 text-gold" />
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-4 lg:p-6">
               <div className="space-y-4">
                 {topProducts.map((product, index) => (
                   <div key={index} className="flex items-center space-x-4 rtl:space-x-reverse p-3 rounded-lg bg-gold/5 hover:bg-gold/10 transition-colors">
@@ -372,14 +372,14 @@ export function LuxuryDashboard({ currentLang }: LuxuryDashboardProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
         >
-          <Card className="bg-off-white/95 backdrop-blur-sm border-gold/20 shadow-luxury">
+          <Card className="bg-off-white/95 backdrop-blur-sm border-gold/20 shadow-luxury w-full overflow-hidden">
             <CardHeader>
               <CardTitle className="text-dark-tea flex items-center justify-between">
                 <span>{currentLang === 'ar' ? 'الطلبات الأخيرة' : 'Recent Orders'}</span>
                 <Clock className="w-5 h-5 text-gold" />
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-4 lg:p-6">
               <div className="space-y-4">
                 {recentOrdersData.map((order, index) => (
                   <div key={order._id} className="flex items-center justify-between p-3 rounded-lg bg-gold/5 hover:bg-gold/10 transition-colors">
