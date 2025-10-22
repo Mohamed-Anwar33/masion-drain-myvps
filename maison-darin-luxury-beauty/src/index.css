@@ -136,6 +136,10 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-padding-top: 100px; /* Accounts for fixed header when scrolling to anchors */
+  }
+
   body {
     @apply bg-background text-foreground font-sans;
     font-family: 'Inter', 'Cairo', sans-serif;
@@ -227,6 +231,37 @@ All colors MUST be HSL.
     background-repeat: no-repeat;
     pointer-events: none;
     z-index: 0;
+  }
+
+  /* Fixed header offset for content */
+  .header-offset {
+    padding-top: 100px; /* Accounts for fixed header height */
+  }
+  
+  @media (min-width: 768px) {
+    .header-offset {
+      padding-top: 120px; /* Slightly more space on larger screens */
+    }
+  }
+
+  /* Responsive section spacing */
+  .py-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  @media (min-width: 640px) {
+    .py-section {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .py-section {
+      padding-top: var(--spacing-section);
+      padding-bottom: var(--spacing-section);
+    }
   }
 
   /* Responsive Arabic/RTL utilities */

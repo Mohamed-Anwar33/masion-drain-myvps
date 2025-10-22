@@ -16,7 +16,7 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
   if (loading) {
     return (
       <section className="py-section bg-gradient-to-br from-dark-tea to-teal-green relative">
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="flex items-center justify-center py-12">
             <LoadingSpinner size="lg" />
           </div>
@@ -29,7 +29,7 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
   if (error || !aboutData) {
     return (
       <section className="py-section bg-gradient-to-br from-dark-tea to-teal-green relative">
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="text-center py-12">
             <p className="text-beige">
               {error || 'Failed to load about section'}
@@ -76,7 +76,7 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
         <div className={`absolute top-1/2 ${isRTL ? 'left-1/3' : 'right-1/3'} w-16 h-16 border border-beige rounded-full animate-pulse delay-2000`}></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
           {/* Left Side - Content */}

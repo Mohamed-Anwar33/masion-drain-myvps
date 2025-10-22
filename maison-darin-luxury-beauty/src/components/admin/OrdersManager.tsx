@@ -258,7 +258,8 @@ export function OrdersManager({ currentLang }: OrdersManagerProps) {
               </p>
             </div>
           ) : (
-            <Table>
+            <div className="overflow-x-auto">
+              <Table className="min-w-[800px]">
               <TableHeader>
                 <TableRow className="border-gold/20">
                   <TableHead className="text-dark-tea font-semibold">
@@ -367,6 +368,7 @@ export function OrdersManager({ currentLang }: OrdersManagerProps) {
                 </AnimatePresence>
               </TableBody>
             </Table>
+            </div>
           )}
         </CardContent>
       </Card>
