@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
-import { Bell, User, Search, LogOut, Settings, Shield } from "lucide-react";
+import { Search, LogOut } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -105,12 +105,6 @@ export const AdminHeader = ({ currentLang, onLanguageChange, activeTab }: AdminH
         {/* Language Switcher */}
         <LanguageSwitcher currentLang={currentLang} onLanguageChange={onLanguageChange} />
 
-        {/* Notifications */}
-        <Button variant="ghost" size="sm" className="relative hover:bg-primary/10">
-          <Bell className="h-4 w-4" />
-          <span className="absolute -top-1 -right-1 h-2 w-2 bg-destructive rounded-full"></span>
-        </Button>
-
         {/* User Menu */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -149,19 +143,6 @@ export const AdminHeader = ({ currentLang, onLanguageChange, activeTab }: AdminH
                 {authState.user?.email}
               </span>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className={`${currentLang === 'ar' ? 'flex-row-reverse' : ''} hover:bg-primary/10`}>
-              <User className={`h-4 w-4 ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`} />
-              {currentLang === 'ar' ? 'الملف الشخصي' : 'Profile'}
-            </DropdownMenuItem>
-            <DropdownMenuItem className={`${currentLang === 'ar' ? 'flex-row-reverse' : ''} hover:bg-primary/10`}>
-              <Settings className={`h-4 w-4 ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`} />
-              {currentLang === 'ar' ? 'الإعدادات' : 'Settings'}
-            </DropdownMenuItem>
-            <DropdownMenuItem className={`${currentLang === 'ar' ? 'flex-row-reverse' : ''} hover:bg-primary/10`}>
-              <Shield className={`h-4 w-4 ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`} />
-              {currentLang === 'ar' ? 'الأمان' : 'Security'}
-            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem 
               className={`text-destructive focus:text-destructive hover:bg-destructive/10 ${currentLang === 'ar' ? 'flex-row-reverse' : ''}`}
