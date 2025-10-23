@@ -22,7 +22,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useAdminSiteSettings } from '@/hooks/useAdminSiteSettings';
@@ -34,6 +34,7 @@ const SiteSettingsManager: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [testing, setTesting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [activeSection, setActiveSection] = useState('email');
   
   // Local state for form data
   const [settings, setSettings] = useState<SiteSettings | null>(null);
@@ -111,37 +112,48 @@ const SiteSettingsManager: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center space-x-3 space-x-reverse">
           <div className="p-2 bg-blue-100 rounded-lg">
             <Settings className="w-5 h-5 text-blue-600" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">إعدادات الموقع</h2>
-            <p className="text-sm text-gray-500">إدارة شاملة لجميع إعدادات الموقع</p>
+            <h2 className="text-lg sm:text-xl font-bold text-gray-900">إعدادات الموقع</h2>
+            <p className="text-xs sm:text-sm text-gray-500">إدارة شاملة لجميع إعدادات الموقع</p>
           </div>
         </div>
         
         <Button
           onClick={handleSave}
           disabled={saving}
-          className="flex items-center space-x-2 space-x-reverse"
+          className="flex items-center space-x-2 space-x-reverse w-full sm:w-auto"
         >
           <Save className="w-4 h-4" />
-          <span>{saving ? 'جاري الحفظ...' : 'حفظ جميع الإعدادات'}</span>
+          <span className="text-sm">{saving ? 'جاري الحفظ...' : 'حفظ جميع الإعدادات'}</span>
         </Button>
       </div>
 
-      <Tabs defaultValue="email" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="email">البريد الإلكتروني</TabsTrigger>
-          <TabsTrigger value="contact">معلومات التواصل</TabsTrigger>
-          <TabsTrigger value="social">وسائل التواصل</TabsTrigger>
-          <TabsTrigger value="site">معلومات الموقع</TabsTrigger>
-        </TabsList>
+      {/* Section Selector */}
+      <Card>
+        <CardContent className="pt-6">
+          <Label htmlFor="section-select" className="text-base font-semibold mb-2 block">اختر القسم</Label>
+          <Select value={activeSection} onValueChange={setActiveSection}>
+            <SelectTrigger id="section-select" className="w-full">
+              <SelectValue placeholder="اختر القسم" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="email">📧 البريد الإلكتروني</SelectItem>
+              <SelectItem value="contact">📞 معلومات التواصل</SelectItem>
+              <SelectItem value="social">🌐 وسائل التواصل</SelectItem>
+              <SelectItem value="site">ℹ️ معلومات الموقع</SelectItem>
+            </SelectContent>
+          </Select>
+        </CardContent>
+      </Card>
 
-        {/* Email Settings Tab */}
-        <TabsContent value="email" className="space-y-6">
+      {/* Email Settings Section */}
+      {activeSection === 'email' && (
+        <div className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
@@ -228,10 +240,12 @@ const SiteSettingsManager: React.FC = () => {
               </CardContent>
             </Card>
           </div>
-        </TabsContent>
+        </div>
+      )}
 
-        {/* Contact Info Tab */}
-        <TabsContent value="contact" className="space-y-6">
+      {/* Contact Info Section */}
+      {activeSection === 'contact' && (
+        <div className="space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center space-x-2 space-x-reverse">
@@ -358,10 +372,12 @@ const SiteSettingsManager: React.FC = () => {
               </div>
             </CardContent>
           </Card>
-        </TabsContent>
+        </div>
+      )}
 
-        {/* Social Media Tab */}
-        <TabsContent value="social" className="space-y-6">
+      {/* Social Media Section */}
+      {activeSection === 'social' && (
+        <div className="space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center space-x-2 space-x-reverse">
@@ -464,10 +480,12 @@ const SiteSettingsManager: React.FC = () => {
               </div>
             </CardContent>
           </Card>
-        </TabsContent>
+        </div>
+      )}
 
-        {/* Site Info Tab */}
-        <TabsContent value="site" className="space-y-6">
+      {/* Site Info Section */}
+      {activeSection === 'site' && (
+        <div className="space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center space-x-2 space-x-reverse">
@@ -570,8 +588,8 @@ const SiteSettingsManager: React.FC = () => {
               </div>
             </CardContent>
           </Card>
-        </TabsContent>
-      </Tabs>
+        </div>
+      )}
     </div>
   );
 };
