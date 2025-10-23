@@ -49,10 +49,9 @@
     max-width: 100% !important;
   }
   
-  /* Grid fixes - prevent overflow */
+  /* Grid fixes - prevent horizontal overflow only */
   .grid {
     max-width: 100% !important;
-    overflow-x: hidden !important;
   }
   
   /* Specific section grid fixes */
@@ -60,27 +59,5 @@
   #collections .grid,
   #contact .grid {
     max-width: 100% !important;
-    overflow-x: hidden !important;
-    gap: 1rem !important;
-  }
-  
-  /* Cards and content */
-  .space-y-6,
-  .space-y-4,
-  .space-y-8 {
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-  }
-  
-  /* Motion divs */
-  [class*="motion"] {
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-  }
-  
-  /* Ensure all direct children of sections don't overflow */
-  section > * {
-    max-width: 100% !important;
-    overflow-x: hidden !important;
   }
 }

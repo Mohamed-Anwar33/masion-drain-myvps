@@ -53,7 +53,7 @@ export function ContactSection({ translations, currentLang }: ContactSectionProp
       className="py-section bg-soft-pink relative emblem-bg w-full overflow-x-hidden"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      <div className="container mx-auto px-4 sm:px-6 max-w-full overflow-x-hidden">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           
           {/* Section Header */}
@@ -84,11 +84,11 @@ export function ContactSection({ translations, currentLang }: ContactSectionProp
             </motion.p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 max-w-full overflow-x-hidden">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
             
             {/* Contact Info Cards */}
             <motion.div 
-              className="space-y-4 sm:space-y-6 max-w-full overflow-x-hidden"
+              className="space-y-4 sm:space-y-6"
               initial={{ x: isRTL ? 100 : -100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
