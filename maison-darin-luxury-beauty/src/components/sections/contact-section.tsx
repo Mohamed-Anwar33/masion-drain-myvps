@@ -50,7 +50,7 @@ export function ContactSection({ translations, currentLang }: ContactSectionProp
   return (
     <section 
       id="contact" 
-      className="py-section bg-soft-pink relative emblem-bg"
+      className="py-section bg-soft-pink relative emblem-bg w-full overflow-x-hidden"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       <div className="container mx-auto px-4 sm:px-6">

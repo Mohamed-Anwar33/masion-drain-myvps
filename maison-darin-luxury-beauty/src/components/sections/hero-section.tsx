@@ -195,15 +195,15 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
             />
 
             {/* Main Image Container with Auto Slideshow */}
-            <div className="relative rounded-3xl overflow-hidden shadow-luxury">
+            <div className="relative rounded-3xl overflow-hidden shadow-luxury bg-gradient-to-br from-dark-tea via-teal-green to-dark-tea">
               {/* Image Stack with Luxury Transitions */}
-              <div className="relative w-full h-[600px]">
+              <div className="relative w-full h-[450px] sm:h-[500px] md:h-[550px] lg:h-[600px]">
                 {heroImages.map((image, index) => (
                   <motion.img
                     key={index}
                     src={image}
                     alt={`Maison Darin Luxury Perfume ${index + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover object-center"
                     initial={{ 
                       opacity: index === 0 ? 1 : 0,
                       scale: 1.1,

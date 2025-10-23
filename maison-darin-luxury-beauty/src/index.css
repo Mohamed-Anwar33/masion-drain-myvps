@@ -140,7 +140,7 @@ All colors MUST be HSL.
   }
 
   html {
-    scroll-padding-top: 70px; /* Accounts for fixed header when scrolling to anchors */
+    scroll-padding-top: 90px; /* Accounts for fixed header when scrolling to anchors */
     margin: 0;
     padding: 0;
     width: 100%;
@@ -247,12 +247,12 @@ All colors MUST be HSL.
 
   /* Fixed header offset for content */
   .header-offset {
-    padding-top: 70px; /* Accounts for fixed header height */
+    padding-top: 90px; /* Accounts for fixed header height */
   }
   
   @media (min-width: 768px) {
     .header-offset {
-      padding-top: 80px; /* Slightly more space on larger screens */
+      padding-top: 100px; /* Slightly more space on larger screens */
     }
   }
 
@@ -403,19 +403,20 @@ All colors MUST be HSL.
   /* Mobile specific fixes for hero section */
   @media (max-width: 768px) {
     .hero-mobile-fix {
-      width: 100vw;
-      margin-left: calc(-50vw + 50%);
-      margin-right: calc(-50vw + 50%);
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
       padding-left: 0;
       padding-right: 0;
+      overflow-x: hidden;
     }
     
     .hero-gradient-full {
-      width: 100vw;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
+      width: 100%;
+      left: 0;
+      right: 0;
+      margin-left: 0;
+      margin-right: 0;
     }
     
     /* Ensure no horizontal scroll */
@@ -447,7 +448,7 @@ All colors MUST be HSL.
     
     /* Logo responsive sizing */
     header img {
-      height: 2.5rem !important;
+      height: 3.5rem !important;
       width: auto !important;
     }
   }

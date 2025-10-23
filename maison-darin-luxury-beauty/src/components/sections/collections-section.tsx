@@ -88,7 +88,7 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
   return (
     <section 
       id="collections" 
-      className="py-section bg-soft-neutral relative emblem-bg"
+      className="py-section bg-soft-neutral relative emblem-bg w-full overflow-x-hidden"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       <div className="container mx-auto px-4 sm:px-6">

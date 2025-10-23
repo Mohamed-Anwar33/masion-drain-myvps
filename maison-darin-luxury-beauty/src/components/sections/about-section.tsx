@@ -66,7 +66,7 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
   return (
     <section 
       id="about" 
-      className="py-section bg-gradient-to-br from-dark-tea to-teal-green relative w-full section-no-gap"
+      className="py-section bg-gradient-to-br from-dark-tea to-teal-green relative w-full section-no-gap overflow-x-hidden"
       dir={isRTL ? 'rtl' : 'ltr'}
       style={{ margin: 0, padding: 0 }}
     >
