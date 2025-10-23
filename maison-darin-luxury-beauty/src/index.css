@@ -451,5 +451,38 @@ All colors MUST be HSL.
       height: 3.5rem !important;
       width: auto !important;
     }
+    
+    /* Prevent horizontal scroll in specific sections */
+    #about, #collections, #contact {
+      overflow-x: hidden !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+    
+    /* Fix grids in sections */
+    #about .grid,
+    #collections .grid,
+    #contact .grid {
+      overflow-x: hidden !important;
+      max-width: 100% !important;
+      gap: 1rem !important;
+    }
+    
+    /* Fix all containers and children */
+    section > div,
+    section .container,
+    section .grid,
+    section .space-y-6,
+    section .space-y-4,
+    section .space-y-8 {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+    }
+    
+    /* Ensure cards don't overflow */
+    .card, [class*="Card"] {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+    }
   }
 }

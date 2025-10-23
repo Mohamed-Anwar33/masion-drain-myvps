@@ -77,8 +77,8 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
         <div className={`absolute top-1/2 ${isRTL ? 'left-1/3' : 'right-1/3'} w-16 h-16 border border-beige rounded-full animate-pulse delay-2000`}></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-full overflow-x-hidden">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center max-w-full overflow-x-hidden">
           
           {/* Left Side - Content */}
           <motion.div 
@@ -111,7 +111,7 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
             {/* Statistics */}
             {aboutData.showStatistics && (
               <motion.div 
-                className="grid grid-cols-3 gap-6 py-8"
+                className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 py-8 max-w-full overflow-x-hidden"
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
@@ -136,7 +136,7 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
           {/* Right Side - Values Cards */}
           {aboutData.showValues && (
             <motion.div 
-              className={`space-y-6 ${isRTL ? 'lg:order-1' : 'lg:order-2'}`}
+              className={`space-y-4 sm:space-y-6 max-w-full overflow-x-hidden ${isRTL ? 'lg:order-1' : 'lg:order-2'}`}
               initial={{ x: isRTL ? -100 : 100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}

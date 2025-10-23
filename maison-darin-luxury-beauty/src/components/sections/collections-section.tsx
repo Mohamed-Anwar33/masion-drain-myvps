@@ -91,7 +91,7 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
       className="py-section bg-soft-neutral relative emblem-bg w-full overflow-x-hidden"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="container mx-auto px-4 sm:px-6 max-w-full overflow-x-hidden">
         {/* Section Header */}
         <motion.div 
           className="text-center mb-16"
@@ -121,7 +121,7 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
         </motion.div>
 
         {/* Collections Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-full overflow-x-hidden">
           {collections.map((collection, index) => (
             <motion.div
               key={collection.id}
