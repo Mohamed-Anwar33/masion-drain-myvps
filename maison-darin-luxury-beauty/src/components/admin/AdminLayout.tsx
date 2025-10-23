@@ -12,8 +12,6 @@ import {
   Menu,
   X,
   LogOut,
-  User,
-  Bell,
   Search,
   Globe,
   Home,
@@ -204,14 +202,6 @@ export function AdminLayout({
             </div>
 
             <div className="flex items-center space-x-4 rtl:space-x-reverse">
-              {/* Notifications */}
-              <Button variant="ghost" size="sm" className="relative">
-                <Bell className="w-5 h-5" />
-                <Badge className="absolute -top-1 -right-1 w-5 h-5 p-0 bg-gold text-dark-tea text-xs flex items-center justify-center">
-                  3
-                </Badge>
-              </Button>
-
               {/* User Menu */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -233,15 +223,6 @@ export function AdminLayout({
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align={isRTL ? 'start' : 'end'} className="w-56">
-                  <DropdownMenuItem>
-                    <User className="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" />
-                    {currentLang === 'ar' ? 'الملف الشخصي' : 'Profile'}
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => onTabChange('settings')}>
-                    <Settings className="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" />
-                    {currentLang === 'ar' ? 'الإعدادات' : 'Settings'}
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout} className="text-red-600">
                     <LogOut className="w-4 h-4 mr-2 rtl:ml-2 rtl:mr-0" />
                     {currentLang === 'ar' ? 'تسجيل الخروج' : 'Logout'}
