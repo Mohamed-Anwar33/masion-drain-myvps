@@ -131,23 +131,34 @@ const AboutSectionEditorNew: React.FC = () => {
       />
       
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-3 space-x-reverse">
-          <div className="p-2 bg-purple-100 rounded-lg">
-            <Type className="w-5 h-5 text-purple-600" />
+      <div className="space-y-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex items-center space-x-3 space-x-reverse">
+            <div className="p-2 bg-purple-100 rounded-lg">
+              <Type className="w-5 h-5 text-purple-600" />
+            </div>
+            <div>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">قسم قصتنا</h2>
+              <p className="text-xs sm:text-sm text-gray-500">إدارة محتوى قسم التعريف بالشركة</p>
+            </div>
           </div>
-          <div>
-            <h2 className="text-xl font-bold text-gray-900">قسم قصتنا</h2>
-            <p className="text-sm text-gray-500">إدارة محتوى قسم التعريف بالشركة</p>
-          </div>
+          
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 w-full sm:w-auto justify-center"
+          >
+            <Save className="w-4 h-4 ml-2" />
+            <span className="text-sm">{saving ? 'جاري الحفظ...' : 'حفظ التغييرات'}</span>
+          </button>
         </div>
         
-        <div className="flex items-center space-x-3 space-x-reverse">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           {/* Language Toggle */}
           <div className="flex bg-gray-100 rounded-lg p-1">
             <button
               onClick={() => setActiveLanguage('ar')}
-              className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+              className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeLanguage === 'ar' 
                   ? 'bg-white text-gray-900 shadow-sm' 
                   : 'text-gray-500 hover:text-gray-700'
@@ -157,7 +168,7 @@ const AboutSectionEditorNew: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveLanguage('en')}
-              className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
+              className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeLanguage === 'en' 
                   ? 'bg-white text-gray-900 shadow-sm' 
                   : 'text-gray-500 hover:text-gray-700'
@@ -169,7 +180,7 @@ const AboutSectionEditorNew: React.FC = () => {
           
           <button
             onClick={() => handleInputChange('showSection', !formData.showSection)}
-            className={`flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+            className={`flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               formData.showSection 
                 ? 'bg-green-100 text-green-700 hover:bg-green-200' 
                 : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
@@ -177,15 +188,6 @@ const AboutSectionEditorNew: React.FC = () => {
           >
             {formData.showSection ? <Eye className="w-4 h-4 ml-2" /> : <EyeOff className="w-4 h-4 ml-2" />}
             {formData.showSection ? 'مرئي' : 'مخفي'}
-          </button>
-          
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
-          >
-            <Save className="w-4 h-4 ml-2" />
-            {saving ? 'جاري الحفظ...' : 'حفظ التغييرات'}
           </button>
         </div>
       </div>
