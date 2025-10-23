@@ -66,7 +66,7 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
   return (
     <section 
       id="about" 
-      className="py-section bg-gradient-to-br from-dark-tea to-teal-green relative w-full section-no-gap overflow-x-hidden"
+      className="py-8 sm:py-12 lg:py-section bg-gradient-to-br from-dark-tea to-teal-green relative w-full section-no-gap overflow-x-hidden"
       dir={isRTL ? 'rtl' : 'ltr'}
       style={{ margin: 0, padding: 0 }}
     >
@@ -78,11 +78,11 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 items-center">
           
           {/* Left Side - Content */}
           <motion.div 
-            className={`space-y-8 ${isRTL ? 'lg:order-2 text-right' : 'lg:order-1'}`}
+            className={`space-y-4 sm:space-y-6 lg:space-y-8 ${isRTL ? 'lg:order-2 text-right' : 'lg:order-1'}`}
             initial={{ x: isRTL ? 100 : -100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -94,16 +94,16 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.8 }}
             >
-              <h2 className="text-4xl lg:text-6xl font-display font-bold text-off-white mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-off-white mb-3 sm:mb-4 lg:mb-6">
                 {aboutData.title[currentLang] || aboutData.title.en}
               </h2>
-              <p className="text-xl text-beige font-medium mb-4">
+              <p className="text-lg sm:text-xl text-beige font-medium mb-2 sm:mb-3 lg:mb-4">
                 {aboutData.subtitle[currentLang] || aboutData.subtitle.en}
               </p>
-              <p className="text-lg text-beige/80 leading-relaxed mb-6">
+              <p className="text-base sm:text-lg text-beige/80 leading-relaxed mb-3 sm:mb-4 lg:mb-6">
                 {aboutData.description[currentLang] || aboutData.description.en}
               </p>
-              <p className="text-lg text-beige/80 leading-relaxed">
+              <p className="text-base sm:text-lg text-beige/80 leading-relaxed">
                 {aboutData.legacy[currentLang] || aboutData.legacy.en}
               </p>
             </motion.div>
@@ -111,23 +111,23 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
             {/* Statistics */}
             {aboutData.showStatistics && (
               <motion.div 
-                className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 py-8"
+                className="grid grid-cols-3 gap-2 sm:gap-3 lg:gap-6 py-4 sm:py-6 lg:py-8"
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gold">{aboutData.statistics.collections.value}</div>
-                  <div className="text-sm text-beige/70">{aboutData.statistics.collections.label[currentLang] || aboutData.statistics.collections.label.en}</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-gold">{aboutData.statistics.collections.value}</div>
+                  <div className="text-xs sm:text-sm text-beige/70">{aboutData.statistics.collections.label[currentLang] || aboutData.statistics.collections.label.en}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gold">{aboutData.statistics.clients.value}</div>
-                  <div className="text-sm text-beige/70">{aboutData.statistics.clients.label[currentLang] || aboutData.statistics.clients.label.en}</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-gold">{aboutData.statistics.clients.value}</div>
+                  <div className="text-xs sm:text-sm text-beige/70">{aboutData.statistics.clients.label[currentLang] || aboutData.statistics.clients.label.en}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gold">{aboutData.statistics.countries.value}</div>
-                  <div className="text-sm text-beige/70">{aboutData.statistics.countries.label[currentLang] || aboutData.statistics.countries.label.en}</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-gold">{aboutData.statistics.countries.value}</div>
+                  <div className="text-xs sm:text-sm text-beige/70">{aboutData.statistics.countries.label[currentLang] || aboutData.statistics.countries.label.en}</div>
                 </div>
               </motion.div>
             )}
@@ -136,7 +136,7 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
           {/* Right Side - Values Cards */}
           {aboutData.showValues && (
             <motion.div 
-              className={`space-y-4 sm:space-y-6 ${isRTL ? 'lg:order-1' : 'lg:order-2'}`}
+              className={`space-y-3 sm:space-y-4 lg:space-y-6 ${isRTL ? 'lg:order-1' : 'lg:order-2'}`}
               initial={{ x: isRTL ? -100 : 100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -155,16 +155,16 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
                 }}
               >
                 <Card className="bg-off-white/95 backdrop-blur-sm border border-gold/20 shadow-luxury hover:shadow-xl transition-all duration-500 group hover:bg-off-white">
-                  <CardContent className="p-6">
+                  <CardContent className="p-4 sm:p-5 lg:p-6">
                     <div className={`flex items-start space-x-4 ${isRTL ? 'space-x-reverse' : ''}`}>
                       <div className="p-3 rounded-full bg-gold/20 group-hover:bg-gold/30 transition-colors">
                         <value.icon className="w-6 h-6 text-gold" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-display font-semibold text-dark-tea mb-2">
+                        <h3 className="text-lg sm:text-xl font-display font-semibold text-dark-tea mb-1 sm:mb-2">
                           {value.title}
                         </h3>
-                        <p className="text-dark-tea/80 leading-relaxed">
+                        <p className="text-sm sm:text-base text-dark-tea/80 leading-relaxed">
                           {value.description}
                         </p>
                       </div>

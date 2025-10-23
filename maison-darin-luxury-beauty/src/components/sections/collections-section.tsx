@@ -88,20 +88,20 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
   return (
     <section 
       id="collections" 
-      className="py-section bg-soft-neutral relative emblem-bg w-full overflow-x-hidden"
+      className="py-8 sm:py-12 lg:py-section bg-soft-neutral relative emblem-bg w-full overflow-x-hidden"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       <div className="container mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.h2 
-            className="text-4xl lg:text-6xl font-display font-bold text-dark-tea mb-6"
+            className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-dark-tea mb-3 sm:mb-4 lg:mb-6"
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -110,7 +110,7 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
             {collectionsData.title[currentLang] || collectionsData.title.en}
           </motion.h2>
           <motion.p 
-            className="text-xl text-teal-green max-w-2xl mx-auto"
+            className="text-lg sm:text-xl text-teal-green max-w-2xl mx-auto"
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -121,7 +121,7 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
         </motion.div>
 
         {/* Collections Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
           {collections.map((collection, index) => (
             <motion.div
               key={collection.id}
@@ -140,7 +140,7 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
                     <motion.img
                       src={collection.image}
                       alt={collection.name}
-                      className="w-full h-80 object-cover"
+                      className="w-full h-48 sm:h-64 lg:h-80 object-cover"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     />
@@ -157,9 +157,9 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
                   </div>
                   </div>
 
-                  <CardContent className="p-6 bg-card">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-xl font-display font-semibold text-card-foreground group-hover:text-primary transition-colors">
+                  <CardContent className="p-4 sm:p-5 lg:p-6 bg-card">
+                  <div className="flex items-start justify-between mb-2 sm:mb-3">
+                    <h3 className="text-lg sm:text-xl font-display font-semibold text-card-foreground group-hover:text-primary transition-colors">
                       {collection.name}
                     </h3>
                     {collectionsData.showRatings && (
@@ -170,13 +170,13 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
                     )}
                   </div>
                   
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                  <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
                     {collection.description}
                   </p>
                   
                   <div className="flex items-center justify-between">
                     {collectionsData.showPrices && (
-                      <span className="text-2xl font-bold text-primary">
+                      <span className="text-xl sm:text-2xl font-bold text-primary">
                         {collection.price}
                       </span>
                     )}
@@ -201,7 +201,7 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
         {/* View All Button */}
         {collectionsData.showViewAllButton && (
           <motion.div 
-            className="text-center mt-12"
+            className="text-center mt-8 sm:mt-10 lg:mt-12"
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}

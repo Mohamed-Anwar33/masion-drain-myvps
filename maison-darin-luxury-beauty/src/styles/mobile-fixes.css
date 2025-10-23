@@ -60,4 +60,52 @@
   #contact .grid {
     max-width: 100% !important;
   }
+  
+  /* Mobile-specific height and spacing optimizations */
+  #about, #collections, #contact {
+    min-height: auto !important;
+  }
+  
+  /* Reduce vertical spacing on mobile */
+  #about .space-y-8 > * + *,
+  #collections .space-y-6 > * + *,
+  #contact .space-y-6 > * + * {
+    margin-top: 1rem !important;
+  }
+  
+  /* Optimize card heights on mobile */
+  #collections .h-80 {
+    height: 12rem !important; /* h-48 */
+  }
+  
+  /* Reduce text sizes for better mobile experience */
+  #about h2,
+  #collections h2,
+  #contact h2 {
+    font-size: 1.875rem !important; /* text-3xl */
+    line-height: 2.25rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  #about p,
+  #collections p,
+  #contact p {
+    font-size: 1rem !important; /* text-base */
+    line-height: 1.5rem !important;
+  }
+  
+  /* Optimize statistics section */
+  #about .grid-cols-3 {
+    gap: 0.5rem !important;
+  }
+  
+  #about .text-3xl {
+    font-size: 1.5rem !important; /* text-2xl */
+    line-height: 2rem !important;
+  }
+  
+  /* Optimize contact form spacing */
+  #contact .max-w-4xl {
+    padding: 0 !important;
+  }
 }

@@ -50,7 +50,7 @@ export function ContactSection({ translations, currentLang }: ContactSectionProp
   return (
     <section 
       id="contact" 
-      className="py-section bg-soft-pink relative emblem-bg w-full overflow-x-hidden"
+      className="py-8 sm:py-12 lg:py-section bg-soft-pink relative emblem-bg w-full overflow-x-hidden"
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       <div className="container mx-auto px-4 sm:px-6">
@@ -58,14 +58,14 @@ export function ContactSection({ translations, currentLang }: ContactSectionProp
           
           {/* Section Header */}
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-12 lg:mb-16"
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.h2 
-              className="text-4xl lg:text-6xl font-display font-bold text-dark-tea mb-6"
+              className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-dark-tea mb-3 sm:mb-4 lg:mb-6"
               initial={{ y: 30, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -74,7 +74,7 @@ export function ContactSection({ translations, currentLang }: ContactSectionProp
               {extractString(translations?.contact?.title) || (currentLang === 'ar' ? 'تواصل معنا' : 'Contact Us')}
             </motion.h2>
             <motion.p 
-              className="text-xl text-teal-green max-w-2xl mx-auto mb-8"
+              className="text-lg sm:text-xl text-teal-green max-w-2xl mx-auto mb-4 sm:mb-6 lg:mb-8"
               initial={{ y: 30, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -84,11 +84,11 @@ export function ContactSection({ translations, currentLang }: ContactSectionProp
             </motion.p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+          <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-10">
             
             {/* Contact Info Cards */}
             <motion.div 
-              className="space-y-4 sm:space-y-6"
+              className="space-y-3 sm:space-y-4 lg:space-y-6"
               initial={{ x: isRTL ? 100 : -100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -106,7 +106,7 @@ export function ContactSection({ translations, currentLang }: ContactSectionProp
                   }}
                 >
                   <Card className="glass border-0 shadow-luxury hover:shadow-xl transition-all duration-500 group">
-                    <CardContent className="p-6">
+                    <CardContent className="p-4 sm:p-5 lg:p-6">
                       <div className="flex items-center space-x-4 rtl:space-x-reverse">
                         <div className="p-3 rounded-full bg-teal-green/20 group-hover:bg-teal-green/30 transition-colors">
                           <info.icon className="w-6 h-6 text-teal-green" />
