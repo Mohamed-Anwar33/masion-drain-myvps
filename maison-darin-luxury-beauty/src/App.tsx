@@ -9,6 +9,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { CartDrawer } from "@/components/ui/cart-drawer";
 import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
 import router from "@/router";
+import cacheManager from "@/utils/cacheManager";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,18 @@ const App = () => {
   const [currentLang, setCurrentLang] = useState<'en' | 'ar'>(
     () => (localStorage.getItem('lang') as 'en' | 'ar') || 'en'
   );
+
+  // استدعاء مدير التخزين المؤقت للتحقق من وجود تحديثات وتنظيف الكاش
+  useEffect(() => {
+    // التحقق من التحديثات وتنظيف الكاش إذا لزم الأمر
+    cacheManager.checkForUpdates();
+    
+    // فحص إذا كان هناك حاجة لمسح التخزين المؤقت بناءً على الوقت المنقضي
+    if (cacheManager.isCacheExpired(12)) { // مسح التخزين المؤقت إذا مر أكثر من 12 ساعة
+      console.log('🧹 التخزين المؤقت قديم، جارٍ التنظيف...');
+      cacheManager.clearBrowserCache({ clearLocalStorage: false, clearSessionStorage: false });
+    }
+  }, []);
 
   useEffect(() => {
     const onLangChange = (e: Event) => {

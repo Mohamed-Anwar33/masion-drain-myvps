@@ -26,5 +26,40 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // تسجيل Service Worker لمسح التخزين المؤقت
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/cache-cleaner-sw.js')
+            .then(registration => {
+              console.log('✅ تم تسجيل Cache Cleaner Service Worker بنجاح:', registration.scope);
+              
+              // محاولة مسح التخزين المؤقت للمتصفح أيضاً
+              if (navigator.serviceWorker.controller) {
+                navigator.serviceWorker.controller.postMessage({
+                  action: 'clearCache'
+                });
+              }
+              
+              // إجبار إعادة التحميل مرة واحدة فقط في حال عدم وجود علامة سابقة
+              const hasReloaded = sessionStorage.getItem('cache_cleaned');
+              if (!hasReloaded) {
+                sessionStorage.setItem('cache_cleaned', 'true');
+                
+                // إعادة تحميل الصفحة بعد تأخير قصير لمسح التخزين المؤقت
+                // فقط إذا كان المتصفح Chrome (يعمل بشكل أفضل مع كروم)
+                const isChrome = navigator.userAgent.includes('Chrome');
+                if (isChrome) {
+                  console.log('🔄 إعادة تحميل الصفحة لتطبيق التغييرات...');
+                  setTimeout(() => { window.location.reload(true); }, 100);
+                }
+              }
+            })
+            .catch(error => {
+              console.error('❌ فشل تسجيل Service Worker:', error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
