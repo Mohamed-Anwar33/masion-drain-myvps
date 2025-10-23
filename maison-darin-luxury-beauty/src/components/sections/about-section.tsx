@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sparkles, Award, Gem } from "lucide-react";
 import { useAboutSection } from "../../hooks/useAboutSection";
@@ -11,6 +12,21 @@ interface AboutSectionProps {
 export function AboutSection({ currentLang }: AboutSectionProps) {
   const { aboutData, loading, error } = useAboutSection();
   const isRTL = currentLang === 'ar';
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Detect mobile view
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
 
   // Show loading state
   if (loading) {
@@ -66,9 +82,9 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
   return (
     <section 
       id="about" 
-      className="py-8 sm:py-12 lg:py-section bg-gradient-to-br from-dark-tea to-teal-green relative w-full section-no-gap overflow-x-hidden"
+      className="py-8 sm:py-12 lg:py-section bg-gradient-to-br from-dark-tea to-teal-green relative w-full section-no-gap overflow-x-hidden fixed-section connected-section"
       dir={isRTL ? 'rtl' : 'ltr'}
-      style={{ margin: 0, padding: 0 }}
+      style={{ margin: 0, padding: '2rem 0', marginTop: 0, paddingTop: 0, borderTop: 0 }}
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
@@ -83,16 +99,16 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
           {/* Left Side - Content */}
           <motion.div 
             className={`space-y-4 sm:space-y-6 lg:space-y-8 ${isRTL ? 'lg:order-2 text-right' : 'lg:order-1'}`}
-            initial={{ x: isRTL ? 100 : -100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
+            initial={isMobile ? { x: 0, opacity: 1 } : { x: isRTL ? 100 : -100, opacity: 0 }}
+            whileInView={isMobile ? { x: 0, opacity: 1 } : { x: 0, opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: isMobile ? 0 : 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.div
-              initial={{ y: 30, opacity: 0 }}
+              initial={isMobile ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.8 }}
+              transition={{ delay: isMobile ? 0 : 0.2, duration: isMobile ? 0 : 0.8 }}
             >
               <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-off-white mb-3 sm:mb-4 lg:mb-6">
                 {aboutData.title[currentLang] || aboutData.title.en}
@@ -112,10 +128,10 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
             {aboutData.showStatistics && (
               <motion.div 
                 className="grid grid-cols-3 gap-2 sm:gap-3 lg:gap-6 py-4 sm:py-6 lg:py-8"
-                initial={{ y: 30, opacity: 0 }}
+                initial={isMobile ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.8 }}
+                transition={{ delay: isMobile ? 0 : 0.4, duration: isMobile ? 0 : 0.8 }}
               >
                 <div className="text-center">
                   <div className="text-2xl sm:text-3xl font-bold text-gold">{aboutData.statistics.collections.value}</div>
@@ -137,20 +153,20 @@ export function AboutSection({ currentLang }: AboutSectionProps) {
           {aboutData.showValues && (
             <motion.div 
               className={`space-y-3 sm:space-y-4 lg:space-y-6 ${isRTL ? 'lg:order-1' : 'lg:order-2'}`}
-              initial={{ x: isRTL ? -100 : 100, opacity: 0 }}
+              initial={isMobile ? { x: 0, opacity: 1 } : { x: isRTL ? -100 : 100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: isMobile ? 0 : 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               {values.map((value, index) => (
               <motion.div
                 key={index}
-                initial={{ y: 50, opacity: 0 }}
+                initial={isMobile ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ 
-                  delay: 0.3 + index * 0.1, 
-                  duration: 0.8,
+                  delay: isMobile ? 0 : 0.3 + index * 0.1, 
+                  duration: isMobile ? 0 : 0.8,
                   ease: [0.22, 1, 0.36, 1]
                 }}
               >

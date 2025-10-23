@@ -1,0 +1,72 @@
+/* تحسينات إضافية للشاشات الصغيرة جدًا */
+
+/* شاشات الموبايل الصغيرة (أقل من 420px) */
+@media screen and (max-width: 420px) {
+  /* تحسين حجم البطاقة في الشاشات الصغيرة */
+  .product-card {
+    width: 95% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+  }
+  
+  /* تقليل حجم الصورة للشاشات الصغيرة */
+  #collections .h-48, 
+  #collections .h-64,
+  #collections .h-80 {
+    height: 10rem !important;
+  }
+  
+  /* ضبط أحجام الخطوط */
+  .product-title-row h3 {
+    font-size: 1.125rem !important;
+  }
+  
+  .product-description {
+    font-size: 0.875rem !important;
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
+    max-height: 3rem !important;
+  }
+  
+  /* تحسين حجم الزر */
+  .details-button {
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.875rem !important;
+  }
+  
+  /* تقليل الهوامش للبطاقات */
+  .card-content {
+    padding: 0.75rem 1rem !important;
+  }
+  
+  /* تحسين المسافات بين البطاقات */
+  .mobile-cards-container {
+    gap: 1rem !important;
+  }
+}
+
+/* شاشات الموبايل شديدة الصغر (أقل من 320px) */
+@media screen and (max-width: 320px) {
+  .product-card {
+    width: 100% !important;
+    max-width: 280px !important;
+  }
+  
+  #collections .h-48, 
+  #collections .h-64,
+  #collections .h-80 {
+    height: 9rem !important;
+  }
+  
+  .product-title-row h3 {
+    font-size: 1rem !important;
+  }
+  
+  .product-description {
+    margin: 0.5rem auto !important;
+  }
+  
+  .details-button {
+    padding: 0.25rem 0.5rem !important;
+  }
+}

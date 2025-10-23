@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { motion } from "framer-motion";
@@ -17,6 +17,7 @@ import { CategoryFilter } from "@/components/ui/category-filter";
 import { useProducts } from "@/hooks/useProducts";
 
 const Products = () => {
+  const navigate = useNavigate(); // إضافة استخدام useNavigate للتنقل
   const [currentLang, setCurrentLang] = useState<'en' | 'ar'>(
     () => (localStorage.getItem('lang') as 'en' | 'ar') || 'en'
   );
@@ -262,87 +263,93 @@ const Products = () => {
             }
           >
             {filteredProducts.map((product, index) => (
-              <motion.div
-                key={product._id || product.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+            <motion.div
+              key={product._id || product.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              {/* نستخدم onClick بدلاً من Link المحيط لمنع تداخل الروابط */}
+              <Card 
+                onClick={(e) => {
+                  // استخدام navigate بشكل صحيح للانتقال إلى صفحة المنتج
+                  e.preventDefault();
+                  navigate(`/product/${product._id || product.id}`);
+                }}
+                className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-card/50 backdrop-blur border-border/50 cursor-pointer"
               >
-                <Link to={`/product/${product._id || product.id}`}>
-                <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-card/50 backdrop-blur border-border/50">
-                  <div className="relative overflow-hidden rounded-t-lg">
-                    <img
-                      src={
-                        product.images?.[0]?.url && !product.images[0].url.includes('/api/placeholder') 
-                          ? product.images[0].url 
-                          : `https://images.unsplash.com/photo-${
-                              product.category === 'woody' ? '1541643600914-78b084683601' :
-                              product.category === 'floral' ? '1594736797933-d0501ba2fe65' :
-                              product.category === 'citrus' ? '1615397349754-cda4d2238e1c' :
-                              product.category === 'oriental' ? '1615397349754-cda4d2238e1c' :
-                              '1541643600914-78b084683601'
-                            }?w=400&h=600&fit=crop&auto=format`
-                      }
-                      alt={product.name?.[currentLang] || product.name?.ar || product.name?.en || 'Product'}
-                      className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    {product.featured && (
-                      <Badge className={`absolute top-3 ${currentLang === 'ar' ? 'right-3' : 'left-3'} bg-accent text-accent-foreground`}>
-                        {currentLang === 'ar' ? "مميز" : "Featured"}
-                      </Badge>
-                    )}
-                    {!product.inStock && (
-                      <Badge variant="secondary" className={`absolute top-3 ${currentLang === 'ar' ? 'left-3' : 'right-3'}`}>
-                        {currentLang === 'ar' ? "غير متوفر" : "Out of Stock"}
-                      </Badge>
-                    )}
+                <div className="relative overflow-hidden rounded-t-lg">
+                  <img
+                    src={
+                      product.images?.[0]?.url && !product.images[0].url.includes('/api/placeholder') 
+                        ? product.images[0].url 
+                        : `https://images.unsplash.com/photo-${
+                            product.category === 'woody' ? '1541643600914-78b084683601' :
+                            product.category === 'floral' ? '1594736797933-d0501ba2fe65' :
+                            product.category === 'citrus' ? '1615397349754-cda4d2238e1c' :
+                            product.category === 'oriental' ? '1615397349754-cda4d2238e1c' :
+                            '1541643600914-78b084683601'
+                          }?w=400&h=600&fit=crop&auto=format`
+                    }
+                    alt={product.name?.[currentLang] || product.name?.ar || product.name?.en || 'Product'}
+                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  {product.featured && (
+                    <Badge className={`absolute top-3 ${currentLang === 'ar' ? 'right-3' : 'left-3'} bg-accent text-accent-foreground`}>
+                      {currentLang === 'ar' ? "مميز" : "Featured"}
+                    </Badge>
+                  )}
+                  {!product.inStock && (
+                    <Badge variant="secondary" className={`absolute top-3 ${currentLang === 'ar' ? 'left-3' : 'right-3'}`}>
+                      {currentLang === 'ar' ? "غير متوفر" : "Out of Stock"}
+                    </Badge>
+                  )}
+                </div>
+                <CardHeader>
+                  <div className="flex items-start justify-between mb-2">
+                    <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                      {product.name?.[currentLang] || product.name?.ar || product.name?.en || 'منتج'}
+                    </CardTitle>
+                    <Badge variant="secondary" className="text-xs">
+                      {categories[product.category as keyof typeof categories]?.[currentLang] || product.category}
+                    </Badge>
                   </div>
-                  <CardHeader>
-                    <div className="flex items-start justify-between mb-2">
-                      <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                        {product.name?.[currentLang] || product.name?.ar || product.name?.en || 'منتج'}
-                      </CardTitle>
-                      <Badge variant="secondary" className="text-xs">
-                        {categories[product.category as keyof typeof categories]?.[currentLang] || product.category}
-                      </Badge>
-                    </div>
-                    <CardDescription className="text-sm">
-                      {product.description?.[currentLang] || product.description?.ar || product.description?.en || 'وصف المنتج'}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-2xl font-bold text-primary">
-                        {product.price} {currentLang === 'ar' ? 'ريال' : 'SAR'}
-                      </span>
-                      <Badge variant="outline">{product.size}</Badge>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button 
-                        size="sm" 
-                        variant="outline"
-                        className="flex-1"
-                        asChild
-                      >
-                        <Link to={`/product/${product._id || product.id}`}>
-                          {currentLang === 'ar' ? "عرض التفاصيل" : "View Details"}
-                        </Link>
-                      </Button>
-                      <Button 
-                        size="sm" 
-                        disabled={!product.inStock}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleAddToCart(product);
-                        }}
-                        className="px-3"
-                      >
-                        <ShoppingCart className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                  <CardDescription className="text-sm">
+                    {product.description?.[currentLang] || product.description?.ar || product.description?.en || 'وصف المنتج'}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-2xl font-bold text-primary">
+                      {product.price} {currentLang === 'ar' ? 'ريال' : 'SAR'}
+                    </span>
+                    <Badge variant="outline">{product.size}</Badge>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button 
+                      size="sm" 
+                      variant="outline"
+                      className="flex-1"
+                      asChild
+                    >
+                      <Link to={`/product/${product._id || product.id}`}>
+                        {currentLang === 'ar' ? "عرض التفاصيل" : "View Details"}
+                      </Link>
+                    </Button>
+                    <Button 
+                      size="sm" 
+                      disabled={!product.inStock}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleAddToCart(product);
+                      }}
+                      className="px-3"
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
           </motion.div>

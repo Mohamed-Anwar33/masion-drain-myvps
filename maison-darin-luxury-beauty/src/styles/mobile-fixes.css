@@ -64,6 +64,21 @@
   /* Mobile-specific height and spacing optimizations */
   #about, #collections, #contact {
     min-height: auto !important;
+    position: relative !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* منع أي حركة تلقائية في الأقسام */
+  .fixed-section {
+    position: relative !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+    will-change: auto !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0 !important;
   }
   
   /* Reduce vertical spacing on mobile */
@@ -73,9 +88,104 @@
     margin-top: 1rem !important;
   }
   
-  /* Optimize card heights on mobile */
+  /* تحسين عرض البطاقات لتظهر بشكل متمركز وكامل */
+  .mobile-cards-container {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  /* التأكد من أن كل بطاقة في المنتصف تمامًا */
+  .product-card {
+    height: 100% !important;
+    width: 90% !important;
+    max-width: 360px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+    overflow: visible !important;
+    border-radius: 12px !important;
+  }
+  
+  /* ضبط أبعاد الصور */
+  #collections .h-48, 
+  #collections .h-64,
   #collections .h-80 {
-    height: 12rem !important; /* h-48 */
+    height: 12rem !important;
+    object-fit: cover !important;
+    width: 100% !important;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+  }
+  
+  /* إعادة تنسيق محتوى البطاقات */
+  .card-content {
+    padding: 1rem 1.25rem !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+  
+  /* العنوان والوصف في المنتصف */
+  .product-title-row {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-bottom: 0.75rem !important;
+    position: relative !important;
+  }
+  
+  .product-title-row h3 {
+    text-align: center !important;
+    width: 100% !important;
+    font-size: 1.25rem !important;
+  }
+  
+  .rating-badge {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+  }
+  
+  .product-description {
+    text-align: center !important;
+    margin: 0.75rem auto !important;
+    max-height: 4.5rem !important;
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    line-clamp: 3 !important; /* Standard property for compatibility */
+  }
+  
+  /* محاذاة الأزرار في المنتصف */
+  .product-footer {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-top: auto !important;
+  }
+  
+  .details-button {
+    margin: 0 auto !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 20px !important;
+  }
+  
+  /* ضبط الهوامش للبطاقة */
+  #collections .p-4,
+  #collections .p-5,
+  #collections .p-6 {
+    padding: 1rem !important;
   }
   
   /* Reduce text sizes for better mobile experience */

@@ -1,6 +1,9 @@
 /* Import RTL fixes */
 @import './styles/rtl-fixes.css';
 
+/* Import RTL Header fixes */
+@import './styles/rtl-fixes-header.css';
+
 /* Import Admin Layout */
 @import './styles/admin-layout.css';
 
@@ -9,6 +12,18 @@
 
 /* Import Mobile Fixes */
 @import './styles/mobile-fixes.css';
+
+/* Import Performance Optimizations */
+@import './styles/performance-optimizations.css';
+
+/* Import Fixed Sections */
+@import './styles/fixed-sections.css';
+
+/* Import Extra Mobile Fixes */
+@import './styles/extra-mobile-fixes.css';
+
+/* Import Section Connection Styles */
+@import './styles/section-connection.css';
 
 @tailwind base;
 @tailwind components;

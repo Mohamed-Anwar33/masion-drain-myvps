@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -15,6 +16,21 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
   const { collectionsData, loading: collectionsLoading, error: collectionsError } = useFeaturedCollections();
   const { products, loading: productsLoading, error: productsError } = useProducts();
   const isRTL = currentLang === 'ar';
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Detect mobile view
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
 
   const loading = collectionsLoading || productsLoading;
   const error = collectionsError || productsError;
@@ -88,61 +104,62 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
   return (
     <section 
       id="collections" 
-      className="py-8 sm:py-12 lg:py-section bg-soft-neutral relative emblem-bg w-full overflow-x-hidden"
+      className="py-8 sm:py-12 lg:py-section bg-soft-neutral relative emblem-bg w-full overflow-x-hidden fixed-section"
       dir={isRTL ? 'rtl' : 'ltr'}
+      style={{ margin: 0, padding: '2rem 0' }}
     >
       <div className="container mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <motion.div 
           className="text-center mb-8 sm:mb-12 lg:mb-16"
-          initial={{ y: 50, opacity: 0 }}
+          initial={isMobile ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: isMobile ? 0 : 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.h2 
             className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-dark-tea mb-3 sm:mb-4 lg:mb-6"
-            initial={{ y: 30, opacity: 0 }}
+            initial={isMobile ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            transition={{ delay: isMobile ? 0 : 0.2, duration: isMobile ? 0 : 0.8 }}
           >
             {collectionsData.title[currentLang] || collectionsData.title.en}
           </motion.h2>
           <motion.p 
             className="text-lg sm:text-xl text-teal-green max-w-2xl mx-auto"
-            initial={{ y: 30, opacity: 0 }}
+            initial={isMobile ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            transition={{ delay: isMobile ? 0 : 0.4, duration: isMobile ? 0 : 0.8 }}
           >
             {collectionsData.subtitle[currentLang] || collectionsData.subtitle.en}
           </motion.p>
         </motion.div>
 
         {/* Collections Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mobile-cards-container">
           {collections.map((collection, index) => (
             <motion.div
               key={collection.id}
-              initial={{ y: 80, opacity: 0 }}
+              initial={isMobile ? { y: 0, opacity: 1 } : { y: 80, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ 
-                delay: index * 0.2, 
-                duration: 0.8, 
+                delay: isMobile ? 0 : index * 0.2, 
+                duration: isMobile ? 0 : 0.8, 
                 ease: [0.22, 1, 0.36, 1] 
               }}
             >
-              <Card className="group overflow-hidden glass border-0 shadow-luxury hover:shadow-xl transition-all duration-500 cursor-pointer">
+              <Card className="group overflow-visible glass border-0 shadow-luxury hover:shadow-xl transition-all duration-500 cursor-pointer h-full product-card">
                 <div className="block">
-                  <div className="relative overflow-hidden">
+                  <div className="relative overflow-visible">
                     <motion.img
                       src={collection.image}
                       alt={collection.name}
                       className="w-full h-48 sm:h-64 lg:h-80 object-cover"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      whileHover={isMobile ? { scale: 1 } : { scale: 1.1 }}
+                      transition={{ duration: isMobile ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] }}
                     />
                   
                   {/* Hover Overlay */}
@@ -157,34 +174,34 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
                   </div>
                   </div>
 
-                  <CardContent className="p-4 sm:p-5 lg:p-6 bg-card">
-                  <div className="flex items-start justify-between mb-2 sm:mb-3">
-                    <h3 className="text-lg sm:text-xl font-display font-semibold text-card-foreground group-hover:text-primary transition-colors">
+                  <CardContent className="p-4 sm:p-5 lg:p-6 bg-card card-content">
+                  <div className="flex items-center justify-between mb-2 sm:mb-3 product-title-row">
+                    <h3 className="text-lg sm:text-xl font-display font-semibold text-card-foreground group-hover:text-primary transition-colors text-center mx-auto">
                       {collection.name}
                     </h3>
                     {collectionsData.showRatings && (
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-1 rating-badge">
                         <Star className="w-4 h-4 fill-gold text-gold" />
                         <span className="text-sm text-muted-foreground">{collection.rating}</span>
                       </div>
                     )}
                   </div>
                   
-                  <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
+                  <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 leading-relaxed text-center product-description">
                     {collection.description}
                   </p>
                   
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-center product-footer">
                     {collectionsData.showPrices && (
-                      <span className="text-xl sm:text-2xl font-bold text-primary">
+                      <span className="text-xl sm:text-2xl font-bold text-primary mr-2">
                         {collection.price}
                       </span>
                     )}
-                    <Link to={collection.link || `/products`}>
+                    <Link to={collection.link || `/products`} className="mx-auto">
                       <Button 
                         variant="outline" 
                         size="sm"
-                        className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                        className="group-hover:bg-primary group-hover:text-primary-foreground transition-colors details-button"
                       >
                         {currentLang === 'en' ? 'View Details' : 'عرض التفاصيل'}
                         <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
@@ -202,10 +219,10 @@ export function CollectionsSection({ currentLang }: CollectionsSectionProps) {
         {collectionsData.showViewAllButton && (
           <motion.div 
             className="text-center mt-8 sm:mt-10 lg:mt-12"
-            initial={{ y: 30, opacity: 0 }}
+            initial={isMobile ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ delay: isMobile ? 0 : 0.6, duration: isMobile ? 0 : 0.8 }}
           >
             <Link to={collectionsData.viewAllButtonLink || '/products'}>
               <Button 

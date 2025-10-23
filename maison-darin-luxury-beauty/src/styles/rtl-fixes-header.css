@@ -1,0 +1,93 @@
+/* تحسينات إضافية للهيدر في الوضع العربي */
+
+/* إصلاح ترتيب العناصر في الهيدر */
+[dir="rtl"] header .flex.items-center.justify-between > div {
+  display: flex;
+  align-items: center;
+}
+
+/* تأكيد موضع الشعار في الوضع العربي */
+[dir="rtl"] header .order-last {
+  order: 3 !important;
+}
+
+[dir="rtl"] header .order-first {
+  order: 1 !important;
+}
+
+/* تأكيد موضع القائمة في الوضع العربي */
+[dir="rtl"] header .order-2 {
+  order: 2 !important;
+}
+
+/* إصلاح قائمة الموبايل للعربية */
+[dir="rtl"] .mobile-menu-content {
+  text-align: right;
+  direction: rtl;
+}
+
+/* تأكيد موضع أزرار العربية والانجليزية */
+[dir="rtl"] .language-switcher {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+/* إصلاحات للشاشات المتوسطة والصغيرة */
+@media (max-width: 768px) {
+  /* تحسين عرض الهيدر على الشاشات الصغيرة */
+  [dir="rtl"] header .container {
+    padding: 0.5rem;
+  }
+
+  [dir="rtl"] header .flex.items-center.justify-between {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  [dir="rtl"] header .order-first,
+  [dir="rtl"] header .order-last {
+    flex: 1;
+  }
+
+  /* تحسين موضع أزرار القائمة والسلة */
+  [dir="rtl"] header .md\:hidden {
+    margin-left: 0.5rem;
+    margin-right: 0;
+  }
+
+  /* تثبيت حجم الشعار مع الحفاظ على التناسب */
+  [dir="rtl"] header img.h-20.w-36,
+  [dir="ltr"] header img.h-20.w-36 {
+    height: 4.5rem !important;
+    width: auto !important;
+    max-width: 7rem !important;
+  }
+
+  /* تحسين موضع قائمة الموبايل */
+  [dir="rtl"] .top-\[90px\],
+  [dir="ltr"] .top-\[90px\] {
+    top: 90px !important;
+  }
+}
+
+/* إصلاحات للشاشات الصغيرة جدًا */
+@media (max-width: 420px) {
+  /* تقليل حجم الشعار للشاشات الصغيرة جدًا */
+  [dir="rtl"] header img.h-20.w-36,
+  [dir="ltr"] header img.h-20.w-36 {
+    height: 4rem !important;
+    max-width: 6rem !important;
+  }
+
+  /* تقليل المسافات الجانبية */
+  [dir="rtl"] header .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  /* ضمان ظهور أزرار التبديل بشكل صحيح */
+  [dir="rtl"] .language-switcher .px-3 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}

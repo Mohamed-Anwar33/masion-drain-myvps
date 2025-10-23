@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Mail, Phone, ArrowRight } from "lucide-react";
@@ -13,6 +14,21 @@ interface ContactSectionProps {
 export function ContactSection({ translations, currentLang }: ContactSectionProps) {
   const isRTL = currentLang === 'ar';
   const { siteSettings, loading: settingsLoading } = useSiteSettings();
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Detect mobile view
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
 
   // Helper function to extract string value - handles nested objects and text fields
   const extractString = (value: any): string => {
@@ -50,8 +66,9 @@ export function ContactSection({ translations, currentLang }: ContactSectionProp
   return (
     <section 
       id="contact" 
-      className="py-8 sm:py-12 lg:py-section bg-soft-pink relative emblem-bg w-full overflow-x-hidden"
+      className="py-8 sm:py-12 lg:py-section bg-soft-pink relative emblem-bg w-full overflow-x-hidden fixed-section"
       dir={isRTL ? 'rtl' : 'ltr'}
+      style={{ margin: 0, padding: '2rem 0' }}
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
@@ -59,26 +76,26 @@ export function ContactSection({ translations, currentLang }: ContactSectionProp
           {/* Section Header */}
           <motion.div 
             className="text-center mb-8 sm:mb-12 lg:mb-16"
-            initial={{ y: 50, opacity: 0 }}
+            initial={isMobile ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: isMobile ? 0 : 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.h2 
               className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold text-dark-tea mb-3 sm:mb-4 lg:mb-6"
-              initial={{ y: 30, opacity: 0 }}
+              initial={isMobile ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.8 }}
+              transition={{ delay: isMobile ? 0 : 0.2, duration: isMobile ? 0 : 0.8 }}
             >
               {extractString(translations?.contact?.title) || (currentLang === 'ar' ? 'تواصل معنا' : 'Contact Us')}
             </motion.h2>
             <motion.p 
               className="text-lg sm:text-xl text-teal-green max-w-2xl mx-auto mb-4 sm:mb-6 lg:mb-8"
-              initial={{ y: 30, opacity: 0 }}
+              initial={isMobile ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.8 }}
+              transition={{ delay: isMobile ? 0 : 0.4, duration: isMobile ? 0 : 0.8 }}
             >
               {extractString(translations?.contact?.subtitle) || (currentLang === 'ar' ? 'نحن هنا للإجابة على استفساراتكم وخدمتكم' : 'We are here to answer your questions and serve you')}
             </motion.p>
@@ -89,20 +106,20 @@ export function ContactSection({ translations, currentLang }: ContactSectionProp
             {/* Contact Info Cards */}
             <motion.div 
               className="space-y-3 sm:space-y-4 lg:space-y-6"
-              initial={{ x: isRTL ? 100 : -100, opacity: 0 }}
+              initial={isMobile ? { x: 0, opacity: 1 } : { x: isRTL ? 100 : -100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: isMobile ? 0 : 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={index}
-                  initial={{ y: 30, opacity: 0 }}
+                  initial={isMobile ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ 
-                    delay: 0.2 + index * 0.1, 
-                    duration: 0.8 
+                    delay: isMobile ? 0 : 0.2 + index * 0.1, 
+                    duration: isMobile ? 0 : 0.8 
                   }}
                 >
                   <Card className="glass border-0 shadow-luxury hover:shadow-xl transition-all duration-500 group">

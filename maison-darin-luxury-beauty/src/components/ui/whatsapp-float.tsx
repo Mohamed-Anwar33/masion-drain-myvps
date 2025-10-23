@@ -114,12 +114,13 @@ export const WhatsAppFloat: React.FC<WhatsAppFloatProps> = ({ currentLang = 'ar'
             {/* Pulse Animation */}
             <motion.div
               animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.7, 0, 0.7]
+                scale: [1, 1.15, 1],
+                opacity: [0.7, 0.3, 0.7]
               }}
               transition={{
-                duration: 2,
-                repeat: Infinity,
+                duration: 1.5,
+                repeat: 1,
+                repeatType: "reverse",
                 ease: "easeInOut"
               }}
               className="absolute inset-0 bg-green-500 rounded-full"
@@ -127,10 +128,11 @@ export const WhatsAppFloat: React.FC<WhatsAppFloatProps> = ({ currentLang = 'ar'
             
             {/* WhatsApp Icon */}
             <motion.div
-              animate={{ rotate: [0, 5, -5, 0] }}
+              animate={{ rotate: [0, 3, -3, 0] }}
               transition={{
-                duration: 2,
-                repeat: Infinity,
+                duration: 1.5,
+                repeat: 1,
+                repeatType: "reverse",
                 ease: "easeInOut"
               }}
               className="relative z-10"
@@ -141,12 +143,13 @@ export const WhatsAppFloat: React.FC<WhatsAppFloatProps> = ({ currentLang = 'ar'
             {/* Notification Dot */}
             <motion.div
               animate={{
-                scale: [1, 1.2, 1],
-                opacity: [1, 0.7, 1]
+                scale: [1, 1.1, 1],
+                opacity: [1, 0.8, 1]
               }}
               transition={{
                 duration: 1.5,
-                repeat: Infinity,
+                repeat: 1,
+                repeatType: "reverse",
                 ease: "easeInOut"
               }}
               className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full 
@@ -159,12 +162,12 @@ export const WhatsAppFloat: React.FC<WhatsAppFloatProps> = ({ currentLang = 'ar'
           {/* Floating Sparkles */}
           <motion.div
             animate={{
-              rotate: 360,
-              scale: [1, 1.1, 1]
+              rotate: 20,
+              scale: [1, 1.05, 1]
             }}
             transition={{
-              rotate: { duration: 8, repeat: Infinity, ease: "linear" },
-              scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+              rotate: { duration: 1.5, repeat: 1, repeatType: "reverse", ease: "easeInOut" },
+              scale: { duration: 2, repeat: 1, repeatType: "reverse", ease: "easeInOut" }
             }}
             className="absolute -top-2 -left-2 text-gold opacity-60"
           >
@@ -173,12 +176,12 @@ export const WhatsAppFloat: React.FC<WhatsAppFloatProps> = ({ currentLang = 'ar'
 
           <motion.div
             animate={{
-              rotate: -360,
-              scale: [1, 1.2, 1]
+              rotate: -20,
+              scale: [1, 1.1, 1]
             }}
             transition={{
-              rotate: { duration: 6, repeat: Infinity, ease: "linear" },
-              scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
+              rotate: { duration: 1.5, repeat: 1, repeatType: "reverse", ease: "easeInOut" },
+              scale: { duration: 2, repeat: 1, repeatType: "reverse", ease: "easeInOut" }
             }}
             className="absolute -bottom-1 -right-2 text-gold opacity-70"
           >

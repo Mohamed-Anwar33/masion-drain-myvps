@@ -1,0 +1,75 @@
+/* Performance Optimizations CSS
+   تحسينات أداء للموقع - يحل مشاكل "Page Unresponsive"
+*/
+
+/* تقليل الحاجة للتعديلات في الـ layout */
+.content-visibility-auto {
+  content-visibility: auto;
+}
+
+/* تحسين تحميل الصفحة */
+img {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 auto;
+}
+
+/* تقليل استخدام الترجمات والتحويلات في 3D */
+.gpu-accelerate {
+  transform: translateZ(0);
+}
+
+/* تعطيل الأنيميشن للمستخدمين الذين يفضلون حركة أقل */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* تحسين عرض الصور */
+.optimized-image {
+  object-fit: contain;
+  max-width: 100%;
+  height: auto;
+}
+
+/* تحسين أداء animations */
+.animation-optimized {
+  will-change: transform, opacity;
+}
+
+/* تقليل تأثير backdrop-filter */
+.reduced-blur {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* تحسين أداء framer-motion */
+.framer-optimized > div {
+  animation-duration: 1.5s !important; /* تقليل مدة الأنميشن */
+  transition-duration: 0.6s !important; /* تسريع الانتقالات */
+}
+
+/* تعطيل framer-motion على الموبايل */
+@media (max-width: 768px) {
+  [class*="framer-"],
+  [class*="motion-"] {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+  
+  /* تجاهل تأثيرات whileInView و whileHover */
+  section,
+  .container,
+  .grid,
+  .card {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+}

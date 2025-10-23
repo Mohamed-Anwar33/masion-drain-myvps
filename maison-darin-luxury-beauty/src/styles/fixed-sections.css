@@ -1,0 +1,117 @@
+/* 
+   Fixed Sections CSS
+   يمنع حركة الأقسام للأعلى والأسفل في الموبايل
+   ويضمن مسافات ثابتة بين الأقسام
+*/
+
+/* تطبيق الثبات على جميع الأقسام */
+section {
+  position: relative !important;
+  transform: none !important;
+  will-change: auto !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* منع تأثير الأنيميشن الافتراضي لـ framer-motion */
+@media (max-width: 768px) {
+  /* تثبيت كل الأقسام والعناصر الرئيسية */
+  section,
+  .container,
+  section > div,
+  .grid,
+  .space-y-4,
+  .space-y-6,
+  .space-y-8 {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+
+  /* منع حركة العناصر في قسم About */
+  #about .grid > div,
+  #about .space-y-4 > div,
+  #about .space-y-6 > div,
+  #about .space-y-8 > div {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+
+  /* منع حركة العناصر في قسم Collections */
+  #collections .grid > div,
+  #collections .mb-8 > div,
+  #collections .mb-12 > div {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+
+  /* منع حركة العناصر في قسم Contact */
+  #contact .grid > div,
+  #contact .space-y-3 > div,
+  #contact .space-y-4 > div,
+  #contact .space-y-6 > div {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+
+  /* تحديد مسافات ثابتة بين الأقسام وتنسيق الألوان */
+  section {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* توحيد المظهر بين الأقسام وإزالة المسافات */
+  section + section {
+    margin-top: 0 !important;
+  }
+  
+  /* إزالة المسافة البيضاء بين الهيرو سيكشن و Our Story */
+  #home + #about {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border-top: 0 !important;
+  }
+  
+  /* توحيد ألوان الأقسام المتجاورة */
+  #about {
+    margin-bottom: 0 !important;
+    border-bottom: none !important;
+  }
+  
+  #collections {
+    margin-top: 0 !important;
+    border-top: none !important;
+  }
+  
+  #contact {
+    margin-top: 0 !important;
+    border-top: none !important;
+  }
+  
+  /* إعادة المسافات للحالة الأصلية */
+  #about::after {
+    display: none !important;
+  }
+  
+  #collections::before {
+    display: none !important;
+  }
+
+  /* إزالة تأثيرات الحركة من framer-motion للموبايل */
+  [class*="motion-"], 
+  [class*="whileInView-"],
+  [class*="animate-"] {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

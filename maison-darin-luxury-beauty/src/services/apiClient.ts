@@ -1,21 +1,60 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+
+// Extend AxiosRequestConfig to include our custom properties
+interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
+  skipCache?: boolean;
+}
 
 // Create axios instance with default configuration
 const apiClient: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
-  timeout: 60000, // Increased for MongoDB Atlas
+  timeout: 20000, // Reduced for better performance
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Request interceptor to add auth token
+// API response caching mechanism
+const apiCache = new Map<string, {data: any, timestamp: number}>();
+const CACHE_DURATION = 3 * 60 * 1000; // 3 minutes
+
+// Helper for generating cache keys
+const getCacheKey = (config: AxiosRequestConfig): string => {
+  const { method, url, params, data } = config;
+  return `${method}-${url}-${JSON.stringify(params)}-${JSON.stringify(data)}`;
+};
+
+// Request interceptor to add auth token and handle caching
 apiClient.interceptors.request.use(
   (config) => {
+    // Add auth token
     const token = localStorage.getItem('authToken');
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    
+    // Check cache for GET requests
+    const customConfig = config as CustomAxiosRequestConfig;
+    if (config.method?.toLowerCase() === 'get' && !customConfig.skipCache) {
+      const cacheKey = getCacheKey(config);
+      const cachedResponse = apiCache.get(cacheKey);
+      
+      if (cachedResponse && (Date.now() - cachedResponse.timestamp) < CACHE_DURATION) {
+        // Return cached response as a resolved promise
+        return {
+          ...config,
+          adapter: () => Promise.resolve({
+            data: cachedResponse.data,
+            status: 200,
+            statusText: 'OK (cached)',
+            headers: {},
+            config,
+            cached: true
+          }),
+        };
+      }
+    }
+    
     return config;
   },
   (error) => {

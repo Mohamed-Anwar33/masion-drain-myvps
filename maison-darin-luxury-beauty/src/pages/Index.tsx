@@ -1,14 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
+import { useLocation } from "react-router-dom";
+// Core components loaded eagerly
 import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero-section";
-import { AboutSection } from "@/components/sections/about-section";
-import { CollectionsSection } from "@/components/sections/collections-section";
-import { ContactSection } from "@/components/sections/contact-section";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useHomePage } from "@/hooks/useHomePage";
-import { useLocation } from "react-router-dom";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
+
+// Lazy-loaded components to improve initial load time
+const AboutSection = lazy(() => import("@/components/sections/about-section").then(module => ({ default: module.AboutSection })));
+const CollectionsSection = lazy(() => import("@/components/sections/collections-section").then(module => ({ default: module.CollectionsSection })));
+const ContactSection = lazy(() => import("@/components/sections/contact-section").then(module => ({ default: module.ContactSection })));
+const Footer = lazy(() => import("@/components/layout/footer").then(module => ({ default: module.Footer })));
 
 const Index = () => {
   const [currentLang, setCurrentLang] = useState<'en' | 'ar'>(
@@ -113,31 +116,55 @@ const Index = () => {
         
         {homePageContent?.showAboutSection !== false && (
           <div className="section-no-gap w-full">
-            <AboutSection 
-              currentLang={currentLang}
-            />
+            <Suspense fallback={
+              <div className="min-h-[400px] flex items-center justify-center">
+                <LoadingSpinner size="sm" />
+              </div>
+            }>
+              <AboutSection 
+                currentLang={currentLang}
+              />
+            </Suspense>
           </div>
         )}
         
         {homePageContent?.showCategories !== false && (
           <div className="section-no-gap w-full">
-            <CollectionsSection 
-              currentLang={currentLang}
-            />
+            <Suspense fallback={
+              <div className="min-h-[400px] flex items-center justify-center">
+                <LoadingSpinner size="sm" />
+              </div>
+            }>
+              <CollectionsSection 
+                currentLang={currentLang}
+              />
+            </Suspense>
           </div>
         )}
         
         {homePageContent?.showContact !== false && (
           <div className="section-no-gap w-full">
-            <ContactSection 
-              translations={t}
-              currentLang={currentLang}
-            />
+            <Suspense fallback={
+              <div className="min-h-[400px] flex items-center justify-center">
+                <LoadingSpinner size="sm" />
+              </div>
+            }>
+              <ContactSection 
+                translations={t}
+                currentLang={currentLang}
+              />
+            </Suspense>
           </div>
         )}
       </main>
 
-      <Footer currentLang={currentLang} translations={t} />
+      <Suspense fallback={
+        <div className="min-h-[100px] bg-background flex items-center justify-center">
+          <LoadingSpinner size="sm" />
+        </div>
+      }>
+        <Footer currentLang={currentLang} translations={t} />
+      </Suspense>
     </div>
   );
 };

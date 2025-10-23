@@ -137,17 +137,55 @@ export const useHomePage = (): UseHomePageReturn => {
 };
 
 // Hook specifically for Hero Section
+// Caching mechanism for API responses
+interface CacheEntry<T> {
+  data: T;
+  timestamp: number;
+  expiresAt: number;
+}
+
+const API_CACHE: Record<string, CacheEntry<any>> = {};
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes cache duration
+
+// Function to get cached data or fetch new data
+const getOrFetchData = async <T,>(cacheKey: string, fetchFn: () => Promise<T>): Promise<T> => {
+  const now = Date.now();
+  const cachedItem = API_CACHE[cacheKey];
+
+  // Return cached data if valid
+  if (cachedItem && now < cachedItem.expiresAt) {
+    return cachedItem.data;
+  }
+
+  // Otherwise fetch new data
+  const data = await fetchFn();
+  
+  // Cache the result
+  API_CACHE[cacheKey] = {
+    data,
+    timestamp: now,
+    expiresAt: now + CACHE_DURATION
+  };
+
+  return data;
+};
+
 export const useHeroSection = () => {
   const [heroData, setHeroData] = useState<HeroSection | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch hero section data
+  // Fetch hero section data with caching
   const fetchHeroData = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
-      const data = await homePageService.getHeroSection();
+      
+      const data = await getOrFetchData<HeroSection>(
+        'hero-section',
+        async () => await homePageService.getHeroSection()
+      );
+      
       setHeroData(data);
     } catch (err: any) {
       setError(err.message);

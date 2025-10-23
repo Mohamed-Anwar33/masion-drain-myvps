@@ -1,20 +1,22 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useHeroSection } from "@/hooks/useHomePage";
 import heroImage from "@/assets/hero-perfume.jpg";
 import collection1 from "@/assets/collection-1.jpg";
 import collection2 from "@/assets/collection-2.jpg";
 import collection3 from "@/assets/collection-3.jpg";
+import { LazyImage } from "@/components/ui/LazyImage";
+import React from "react";
 
 interface HeroSectionProps {
   translations: any;
   currentLang: 'en' | 'ar';
 }
 
-export function HeroSection({ translations, currentLang }: HeroSectionProps) {
+export const HeroSection = React.memo(({ translations, currentLang }: HeroSectionProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { heroData, loading } = useHeroSection();
   const navigate = useNavigate();
@@ -22,12 +24,14 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
   const fallbackImages = [heroImage, collection1, collection2, collection3];
   
   // Use hero data images or fallback
-  const heroImages = heroData?.images?.slideshow?.length > 0 
-    ? heroData.images.slideshow.map(img => img.url)
-    : fallbackImages;
+  const heroImages = useMemo(() => {
+    return heroData?.images?.slideshow?.length > 0 
+      ? heroData.images.slideshow.map(img => img.url)
+      : fallbackImages;
+  }, [heroData?.images?.slideshow, fallbackImages]);
 
   // Helper function to extract string value - handles nested objects and text fields
-  const extractString = (value: any): string => {
+  const extractString = useCallback((value: any): string => {
     if (!value) return '';
     if (typeof value === 'string') return value;
     if (value?.text) return String(value.text);
@@ -38,38 +42,58 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
       if (value.ar) return String(value.ar);
     }
     return String(value);
-  };
+  }, [currentLang]);
 
   // Click handlers for CTA buttons
-  const handleExploreCollections = () => {
+  const handleExploreCollections = useCallback(() => {
     navigate('/products');
-  };
+  }, [navigate]);
 
-  const handleRequestSample = () => {
+  const handleRequestSample = useCallback(() => {
     // Scroll to contact section
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, []);
 
-  // Auto-change images every 4 seconds
+  // Auto-change images every 4 seconds (optimized with requestAnimationFrame)
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 4000);
-
-    return () => clearInterval(interval);
+    let isMounted = true;
+    let lastTime = 0;
+    let animationFrameId: number;
+    const interval = 4000; // 4 seconds between slides
+    
+    const updateSlide = (timestamp: number) => {
+      if (!isMounted) return;
+      
+      if (!lastTime) lastTime = timestamp;
+      const elapsed = timestamp - lastTime;
+      
+      if (elapsed >= interval) {
+        setCurrentImageIndex(prevIndex => 
+          prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
+        );
+        lastTime = timestamp;
+      }
+      
+      animationFrameId = requestAnimationFrame(updateSlide);
+    };
+    
+    animationFrameId = requestAnimationFrame(updateSlide);
+    
+    return () => {
+      isMounted = false;
+      cancelAnimationFrame(animationFrameId);
+    };
   }, [heroImages.length]);
 
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center relative overflow-hidden emblem-bg pt-16 md:pt-20 hero-mobile-fix w-full"
+      className="min-h-screen flex items-center relative overflow-hidden emblem-bg pt-16 md:pt-20 hero-mobile-fix w-full connected-section"
       dir={isRTL ? 'rtl' : 'ltr'}
-      style={{ margin: 0, padding: 0 }}
+      style={{ margin: 0, padding: 0, marginBottom: 0, paddingBottom: 0 }}
     >
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-dark-tea via-teal-green to-dark-tea opacity-90 hero-gradient-full" />
@@ -168,29 +192,30 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
           >
             {/* Floating Elements */}
             <motion.div 
-              className={`absolute -top-8 ${isRTL ? '-right-8' : '-left-8'} w-16 h-16 rounded-full bg-gold/20 glass`}
+              className={`absolute -top-8 ${isRTL ? '-right-8' : '-left-8'} w-16 h-16 rounded-full bg-gold/20 glass animation-optimized`}
               animate={{ 
-                y: [0, -20, 0],
-                rotate: [0, 180, 360]
+                y: [0, -10, 0],
+                rotate: [0, 15, 0]
               }}
               transition={{ 
-                duration: 6, 
-                repeat: Infinity, 
+                duration: 3, 
+                repeat: 1,
+                repeatType: "reverse",
                 ease: "easeInOut" 
               }}
             />
             
             <motion.div 
-              className={`absolute -bottom-4 ${isRTL ? '-left-4' : '-right-4'} w-12 h-12 rounded-full bg-light-brown/30 glass`}
+              className={`absolute -bottom-4 ${isRTL ? '-left-4' : '-right-4'} w-12 h-12 rounded-full bg-light-brown/30 glass animation-optimized`}
               animate={{ 
-                y: [0, 20, 0],
-                x: [0, 10, 0]
+                y: [0, 10, 0],
+                x: [0, 5, 0]
               }}
               transition={{ 
-                duration: 4, 
-                repeat: Infinity, 
-                ease: "easeInOut",
-                delay: 1
+                duration: 2.5, 
+                repeat: 1,
+                repeatType: "reverse", 
+                ease: "easeInOut"
               }}
             />
 
@@ -199,30 +224,27 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
               {/* Image Stack with Luxury Transitions */}
               <div className="relative w-full h-[450px] sm:h-[500px] md:h-[550px] lg:h-[600px]">
                 {heroImages.map((image, index) => (
-                  <motion.img
+                  <motion.div
                     key={index}
-                    src={image}
-                    alt={`Maison Darin Luxury Perfume ${index + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover object-center"
+                    className="absolute inset-0 w-full h-full"
                     initial={{ 
-                      opacity: index === 0 ? 1 : 0,
-                      scale: 1.1,
-                      filter: "blur(10px)"
+                      opacity: index === 0 ? 1 : 0
                     }}
                     animate={{ 
-                      opacity: index === currentImageIndex ? 1 : 0,
-                      scale: index === currentImageIndex ? 1 : 1.1,
-                      filter: index === currentImageIndex ? "blur(0px)" : "blur(10px)"
+                      opacity: index === currentImageIndex ? 1 : 0
                     }}
                     transition={{ 
-                      duration: 1.5,
-                      ease: [0.22, 1, 0.36, 1],
-                      opacity: { duration: 1.2 },
-                      scale: { duration: 8 },
-                      filter: { duration: 1 }
+                      duration: 0.8,
+                      ease: "easeInOut"
                     }}
-                    whileHover={{ scale: index === currentImageIndex ? 1.05 : 1.1 }}
-                  />
+                  >
+                    <LazyImage
+                      src={image}
+                      alt={`Maison Darin Luxury Perfume ${index + 1}`}
+                      className="w-full h-full"
+                      objectFit="cover"
+                    />
+                  </motion.div>
                 ))}
               </div>
               
@@ -255,12 +277,13 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
                       <motion.div
                         className="absolute inset-0 w-3 h-3 rounded-full bg-gold/50"
                         animate={{ 
-                          scale: [1, 1.8, 1],
-                          opacity: [0.5, 0, 0.5]
+                          scale: [1, 1.5, 1],
+                          opacity: [0.5, 0.2, 0.5]
                         }}
                         transition={{ 
-                          duration: 2,
-                          repeat: Infinity,
+                          duration: 1.5,
+                          repeat: 1,
+                          repeatType: "reverse",
                           ease: "easeInOut"
                         }}
                       />
@@ -285,16 +308,16 @@ export function HeroSection({ translations, currentLang }: HeroSectionProps) {
       >
         <motion.div 
           className="w-6 h-10 border-2 border-beige/50 rounded-full flex justify-center"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.5, repeat: 1, repeatType: "reverse", ease: "easeInOut" }}
         >
           <motion.div 
             className="w-1 h-3 bg-beige rounded-full mt-2"
-            animate={{ scaleY: [1, 0.5, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ scaleY: [1, 0.7, 1] }}
+            transition={{ duration: 1.5, repeat: 1, repeatType: "reverse", ease: "easeInOut" }}
           />
         </motion.div>
       </motion.div>
     </section>
   );
-}
+})

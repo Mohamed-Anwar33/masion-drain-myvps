@@ -45,27 +45,29 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       <div className="container mx-auto px-4 py-3">
-        <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
-          {/* Logo */}
-          <Link to="/">
-            <motion.div 
-              className="flex items-center"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <img 
-                src={logo} 
-                alt="Logo" 
-                className="h-16 w-28 object-contain drop-shadow-lg"
-                style={{
-                  filter: 'brightness(0) saturate(100%) invert(20%) sepia(51%) saturate(1234%) hue-rotate(139deg) brightness(95%) contrast(95%)'
-                }}
-              />
-            </motion.div>
-          </Link>
+        <div className="flex items-center justify-between w-full">
+          {/* Logo - positioned correctly based on language */}
+          <div className={`${isRTL ? 'order-last' : 'order-first'}`}>
+            <Link to="/">
+              <motion.div 
+                className="flex items-center"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <img 
+                  src={logo} 
+                  alt="Logo" 
+                  className="h-20 w-36 object-contain drop-shadow-lg"
+                  style={{
+                    filter: 'brightness(0) saturate(100%) invert(20%) sepia(51%) saturate(1234%) hue-rotate(139deg) brightness(95%) contrast(95%)'
+                  }}
+                />
+              </motion.div>
+            </Link>
+          </div>
 
-          {/* Desktop Navigation */}
-          <nav className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-6' : 'space-x-6'}`}>
+          {/* Desktop Navigation - center positioned */}
+          <nav className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-6' : 'space-x-6'} ${isRTL ? 'order-2' : 'order-2'}`}>
             <Link to="/#top" className="text-foreground hover:text-primary transition-colors duration-300 font-medium">
               {extractString(translations?.nav?.home)}
             </Link>
@@ -80,8 +82,8 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
             </Link>
           </nav>
 
-          {/* Right Side Actions */}
-          <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
+          {/* Right Side Actions - correctly positioned based on language */}
+          <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'} ${isRTL ? 'order-first' : 'order-last'}`}>
             <LanguageSwitcher 
               currentLang={currentLang} 
               onLanguageChange={onLanguageChange} 
@@ -127,7 +129,7 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
             <Button 
               variant="ghost" 
               size="icon" 
-              className="md:hidden"
+              className={`md:hidden ${isRTL ? 'ml-0 mr-1' : 'ml-1 mr-0'}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
@@ -142,7 +144,7 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden fixed top-[80px] left-0 right-0 bg-white border-t border-gray-200 shadow-xl z-[9999]"
+            className="md:hidden fixed top-[90px] left-0 right-0 bg-white border-t border-gray-200 shadow-xl z-[9999] mobile-menu-content"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -154,31 +156,31 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
               <div className="space-y-2">
                 <Link 
                   to="/#top" 
-                  className="block w-full text-right px-4 py-3 text-lg font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-lg transition-all duration-300"
+                  className={`block w-full px-4 py-3 text-lg font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-lg transition-all duration-300 ${isRTL ? 'text-right' : 'text-left'}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  الرئيسية
+                  {extractString(translations?.nav?.home)}
                 </Link>
                 <Link 
                   to="/products" 
-                  className="block w-full text-right px-4 py-3 text-lg font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-lg transition-all duration-300"
+                  className={`block w-full px-4 py-3 text-lg font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-lg transition-all duration-300 ${isRTL ? 'text-right' : 'text-left'}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  المجموعات
+                  {extractString(translations?.nav?.collections)}
                 </Link>
                 <Link 
                   to="/#about" 
-                  className="block w-full text-right px-4 py-3 text-lg font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-lg transition-all duration-300"
+                  className={`block w-full px-4 py-3 text-lg font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-lg transition-all duration-300 ${isRTL ? 'text-right' : 'text-left'}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  من نحن
+                  {extractString(translations?.nav?.about)}
                 </Link>
                 <Link 
                   to="/#contact" 
-                  className="block w-full text-right px-4 py-3 text-lg font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-lg transition-all duration-300"
+                  className={`block w-full px-4 py-3 text-lg font-medium text-gray-800 hover:text-primary hover:bg-gray-50 rounded-lg transition-all duration-300 ${isRTL ? 'text-right' : 'text-left'}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  اتصل بنا
+                  {extractString(translations?.nav?.contact)}
                 </Link>
               </div>
 
@@ -201,9 +203,9 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
                       </Badge>
                     )}
                   </div>
-                  <div className="flex items-center">
-                    <span>سلة التسوق</span>
-                    <ShoppingBag className="w-5 h-5 ml-3" />
+                  <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    <span>{isRTL ? extractString(translations?.nav?.cart) || 'سلة التسوق' : extractString(translations?.nav?.cart) || 'Cart'}</span>
+                    <ShoppingBag className={`w-5 h-5 ${isRTL ? 'mr-3' : 'ml-3'}`} />
                   </div>
                 </Button>
 
@@ -217,9 +219,9 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
                       setIsMobileMenuOpen(false);
                     }}
                   >
-                    <div className="flex items-center">
-                      <span>تسجيل خروج</span>
-                      <LogOut className="w-5 h-5 ml-3" />
+                    <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+                      <span>{isRTL ? extractString(translations?.nav?.logout) || 'تسجيل خروج' : extractString(translations?.nav?.logout) || 'Logout'}</span>
+                      <LogOut className={`w-5 h-5 ${isRTL ? 'mr-3' : 'ml-3'}`} />
                     </div>
                   </Button>
                 )}
@@ -232,7 +234,7 @@ export function Header({ currentLang, onLanguageChange, translations }: HeaderPr
         {isMobileMenuOpen && (
           <div 
             className="md:hidden fixed inset-0 bg-black/20 z-[9998]"
-            style={{ top: '80px' }}
+            style={{ top: '90px' }}
             onClick={() => setIsMobileMenuOpen(false)}
           />
         )}
